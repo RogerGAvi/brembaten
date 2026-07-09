@@ -1,5 +1,4 @@
-[README.md](https://github.com/user-attachments/files/29852587/README.md)
-# Bremba-Te'n — Web
+[README.md](https://github.com/user-attachments/files/29864899/README.md)[Uploading R# Bremba-Te'n — Web
 
 Web de una sola página (scroll con anclas) para Artesania e Decoracion Bremba-Te'n, Bossòst (Val d'Aran).
 
@@ -44,3 +43,4 @@ git push -u origin main
 
 En Netlify: **Add new site → Import an existing project → GitHub** → selecciona el repo.
 No necesita build command ni carpeta especial (deja "Publish directory" vacío o en `.`).
+EADME.md…]()
