@@ -181,14 +181,80 @@
         .lang-btn { padding: 5px 6px; font-size: 10.5px; }
     }
 
-    #inicio { scroll-margin-top: 64px; margin-top: 64px; }
-    #video, #instagram, #productos, #quienes-somos, #resenas, #contacto { scroll-margin-top: 64px; }
+    /* ── MENÚ MÓVIL (hamburguesa) ───────────────────────── */
+    .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 34px;
+        height: 34px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 8px;
+        flex-shrink: 0;
+        padding: 0;
+    }
 
-    @media (max-width: 768px) {
+    .nav-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 880px) {
+        .nav-brand span { display: inline; }
+        .nav-toggle { display: flex; }
+
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: rgba(28,17,12,0.98);
+            backdrop-filter: blur(12px);
+            flex-direction: column;
+            align-items: stretch;
+            gap: 4px;
+            padding: 14px 20px 20px;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+            border-bottom: 1px solid rgba(184,134,11,0.25);
+        }
+
+        .nav-links.open {
+            display: flex;
+        }
+
+        .nav-link {
+            padding: 13px 14px;
+            font-size: 15px;
+            border-radius: 8px;
+        }
+
+        .nav-link.nav-cta {
+            margin-left: 0;
+            margin-top: 8px;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 640px) {
         .nav-brand span { display: none; }
         .site-nav-inner { padding: 0 14px; }
-        .nav-link { font-size: 12px; padding: 7px 10px; }
     }
+
+    #inicio { scroll-margin-top: 64px; margin-top: 64px; }
+    #video, #instagram, #productos, #quienes-somos, #resenas, #contacto { scroll-margin-top: 64px; }
 
     /* ── HERO ────────────────────────────────────────── */
     .hero {
@@ -921,6 +987,9 @@
                 <button type="button" data-lang="oc" class="lang-btn">OC</button>
                 <button type="button" data-lang="fr" class="lang-btn">FR</button>
             </div>
+            <button type="button" class="nav-toggle" id="navToggle" aria-label="Menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
@@ -1575,10 +1644,27 @@
         var nav = document.getElementById('siteNav');
         var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
         var sectionIds = ['inicio','video','productos','instagram','quienes-somos','resenas','contacto'];
+        var navToggle = document.getElementById('navToggle');
+        var navLinksPanel = document.querySelector('.nav-links');
+
+        function closeMobileMenu() {
+            navLinksPanel.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                var isOpen = navLinksPanel.classList.toggle('open');
+                navToggle.classList.toggle('open', isOpen);
+                navToggle.setAttribute('aria-expanded', String(isOpen));
+            });
+        }
 
         navLinks.forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
+                closeMobileMenu();
                 var id = this.getAttribute('href').slice(1);
                 var target = document.getElementById(id);
                 if (!target) return;
