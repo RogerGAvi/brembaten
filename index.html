@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bremba-Te'n · Artesania e Decoracion · Bossòst, Val d'Aran</title>
-<link rel="icon" type="image/jpeg" href="assets/logo_bremba.jpg">
+<title>Bremba-te'n · Artesania e Decoracion · Bossòst, Val d'Aran</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -176,7 +182,7 @@
     }
 
     #inicio { scroll-margin-top: 64px; margin-top: 64px; }
-    #instagram, #productos, #quienes-somos, #resenas, #contacto { scroll-margin-top: 64px; }
+    #video, #instagram, #productos, #quienes-somos, #resenas, #contacto { scroll-margin-top: 64px; }
 
     @media (max-width: 768px) {
         .nav-brand span { display: none; }
@@ -347,49 +353,78 @@
         line-height: 1.7;
     }
 
-    /* ── INSTAGRAM ───────────────────────────────────── */
+    /* ── VÍDEO ───────────────────────────────────────── */
+    .video-section { background: var(--white); }
+
+    .video-frame {
+        position: relative;
+        width: 100%;
+        max-width: 860px;
+        margin: 0 auto;
+        aspect-ratio: 16 / 9;
+        background: var(--ink);
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+    .video-frame iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .video-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.5);
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    /* ── INSTAGRAM (galería estática) ─────────────────── */
     .instagram-section {
         background: var(--parchment-dark);
     }
 
-    .ig-widget-frame {
-        background: var(--white);
-        border: 1px solid rgba(36,28,21,0.1);
-        border-radius: 14px;
-        padding: 24px;
-        min-height: 340px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Grid de respaldo mientras se conecta el widget real de Instagram */
-    .ig-fallback-grid {
+    .ig-gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 14px;
-        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 28px;
     }
 
-    .ig-fallback-grid img {
+    .ig-gallery img {
         width: 100%;
-        height: 200px;
+        height: 240px;
         object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .btn-outline-dark {
+        display: inline-block;
+        padding: 12px 24px;
         border-radius: 8px;
+        font-weight: 600;
+        font-size: 14.5px;
+        border: 1.5px solid var(--ink);
+        color: var(--ink);
+        transition: all 0.2s ease;
+    }
+
+    .btn-outline-dark:hover {
+        background: var(--ink);
+        color: var(--white);
     }
 
     .ig-note {
         margin-top: 18px;
         font-size: 13.5px;
         color: var(--ink-soft);
-        text-align: center;
-    }
-
-    .ig-note code {
-        background: rgba(36,28,21,0.06);
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 12px;
     }
 
     /* ── PRODUCTOS (cerámica vs gres) ───────────────────── */
@@ -779,13 +814,15 @@
     <nav class="site-nav" id="siteNav">
         <div class="site-nav-inner">
             <a href="#inicio" class="nav-brand">
-                <img src="assets/logo_bremba.jpg" alt="Bremba-Te'n">
-                <span>Bremba-Te'n</span>
+                <img src="assets/logo_bremba.jpg" alt="Bremba-te'n">
+                <span>Bremba-te'n</span>
             </a>
             <div class="nav-divider"></div>
             <div class="nav-links">
                 <a href="#inicio" class="nav-link active" data-i18n="nav.inicio">Inicio</a>
+                <a href="#video" class="nav-link" data-i18n="nav.video">Vídeo</a>
                 <a href="#productos" class="nav-link" data-i18n="nav.productos">Cerámica y Gres</a>
+                <a href="#instagram" class="nav-link" data-i18n="nav.instagram">Instagram</a>
                 <a href="#quienes-somos" class="nav-link" data-i18n="nav.quienes">Quiénes somos</a>
                 <a href="#resenas" class="nav-link" data-i18n="nav.resenas">Reseñas</a>
                 <a href="#contacto" class="nav-link nav-cta" data-i18n="nav.contacto">Contacto →</a>
@@ -830,20 +867,24 @@
         </div>
     </header>
 
-    <!-- ── INSTAGRAM ──────────────────────────────────── -->
-    <section class="instagram-section" id="instagram">
+    <!-- ── VÍDEO ──────────────────────────────────────── -->
+    <section class="video-section" id="video">
         <div class="section-inner">
-            <div class="section-eyebrow" data-i18n="ig.eyebrow">Últimas publicaciones</div>
-            <h2 data-i18n="ig.h2">Síguenos en Instagram</h2>
-            <p class="section-lead" data-i18n="ig.lead">@brembaten — piezas nuevas, novedades de tienda y el día a día del taller.</p>
+            <div class="section-eyebrow" data-i18n="vid.eyebrow">Nuestro oficio</div>
+            <h2 data-i18n="vid.h2">La cerámica, en movimiento</h2>
+            <p class="section-lead" data-i18n="vid.lead">Un vistazo al proceso y a las piezas que encontrarás en la tienda.</p>
 
-            <div class="ig-widget-frame" id="instagram-widget">
-                <div class="sk-ww-instagram-reels" data-embed-id="25695899"></div>
-                <script src="https://widgets.sociablekit.com/instagram-reels/widget.js" defer></script>
+            <div class="video-frame">
+                <iframe src="https://player.vimeo.com/video/1208547771?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    title="Brembaten"
+                    allowfullscreen></iframe>
             </div>
-            <p class="ig-note" data-i18n="ig.note">Feed conectado en directo a @Brembaten vía SociableKIT.</p>
         </div>
     </section>
+    <script src="https://player.vimeo.com/api/player.js"></script>
 
     <!-- ── PRODUCTOS: CERÁMICA VS GRES ────────────────── -->
     <section class="productos-section" id="productos">
@@ -857,7 +898,7 @@
                     <h3 data-i18n="prod.ceramica.title">Cerámica Tradicional</h3>
                     <img src="assets/ceramica_producto.jpg" alt="Cerámica tradicional artesanal de colores" class="prod-photo">
                     <div class="prod-intro" data-i18n="prod.ceramica.intro">La expresión más libre de la alfarería española: color, forma y carácter, pieza a pieza.</div>
-                    <div class="prod-process" data-i18n="prod.ceramica.process">Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España — sin dos piezas exactamente iguales.</div>
+                    <div class="prod-process" data-i18n="prod.ceramica.process">Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España, sin dos piezas exactamente iguales.</div>
                     <ul>
                         <li><svg class="icon"><use href="#icon-wheel"/></svg><span data-i18n-html="prod.ceramica.b1"><strong>Color sin límites:</strong> tonos vivos, intensos y variados que reflejan la tradición de cada región.</span></li>
                         <li><svg class="icon"><use href="#icon-plate"/></svg><span data-i18n-html="prod.ceramica.b2"><strong>Versatilidad total:</strong> vajillas de mesa, tajines y cazuelas de cocina tradicional, jarrones y paragüeros.</span></li>
@@ -907,16 +948,29 @@
         </div>
     </section>
 
+    <!-- ── INSTAGRAM (galería estática) ─────────────────── -->
+    <section class="instagram-section" id="instagram">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="ig.eyebrow">Colecciones</div>
+            <h2 data-i18n="ig.h2">Síguenos en Instagram</h2>
+            <p class="section-lead" data-i18n="ig.lead">@Brembaten, una selección de piezas de nuestras colecciones.</p>
+
+            <div class="ig-gallery" id="igGallery"></div>
+            <a href="https://www.instagram.com/Brembaten" target="_blank" rel="noopener" class="btn btn-outline-dark" data-i18n="ig.cta">Ver más en Instagram</a>
+            <p class="ig-note" data-i18n="ig.note">Galería actualizada por temporada con nuestras últimas colecciones.</p>
+        </div>
+    </section>
+
     <!-- ── QUIÉNES SOMOS ───────────────────────────────── -->
     <section class="quienes-section" id="quienes-somos">
         <div class="section-inner">
             <div class="section-eyebrow" data-i18n="qs.eyebrow">Nuestra historia</div>
             <h2 data-i18n="qs.h2">Un negocio familiar en el corazón del Val d'Aran</h2>
             <div class="quienes-grid">
-                <img src="assets/tienda_entrada.jpg" alt="Entrada de la tienda Bremba-Te'n en Bossòst">
+                <img src="assets/tienda_entrada.jpg" alt="Entrada de la tienda Bremba-te'n en Bossòst">
                 <div class="quienes-text">
-                    <p data-i18n="qs.p1">Bremba-Te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.</p>
-                    <p data-i18n="qs.p2">En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra — y así queremos que se sienta cada una en tu casa.</p>
+                    <p data-i18n="qs.p1">Bremba-te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.</p>
+                    <p data-i18n="qs.p2">En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra, y así queremos que se sienta cada una en tu casa.</p>
                     <p data-i18n="qs.p3">Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.</p>
                 </div>
             </div>
@@ -947,7 +1001,7 @@
                 </div>
                 <div class="resena-card">
                     <div class="stars">★★★★★</div>
-                    <p data-i18n="rv.q2">"Paso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad — se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible."</p>
+                    <p data-i18n="rv.q2">"Paso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad. Se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible."</p>
                     <div class="resena-author">Julie D.</div>
                     <div class="resena-source" data-i18n="rv.source2">Google · Local Guide · traducida del francés</div>
                 </div>
@@ -1003,17 +1057,86 @@
     <!-- ── FOOTER ──────────────────────────────────────── -->
     <footer>
         <div class="footer-brand">
-            <img src="assets/logo_bremba.jpg" alt="Bremba-Te'n">
+            <img src="assets/logo_bremba.jpg" alt="Bremba-te'n">
             <span class="footer-name">BREMBA-TE'N</span>
         </div>
         <p><span data-i18n="ft.tagline">Artesania e Decoracion</span> · Bossòst · Val d'Aran</p>
     </footer>
 
 <script>
+    // ═══════════════════════════════════════════════════════════════
+    // GALERÍA DE INSTAGRAM (carga automática desde GitHub)
+    //
+    // La web pregunta a GitHub qué imágenes hay en assets/carrusel/
+    // y las pinta solas. Para añadir o quitar fotos: sube o borra
+    // archivos en esa carpeta del repositorio. No hace falta tocar
+    // este código para nada.
+    //
+    // Requiere que el repositorio sea PÚBLICO (si es privado, esta
+    // llamada fallará y se usará el respaldo de abajo).
+    // ═══════════════════════════════════════════════════════════════
+    var GITHUB_OWNER = 'RogerGAvi';
+    var GITHUB_REPO = 'brembaten';
+    var CARRUSEL_PATH = 'assets/carrusel';
+
+    // Respaldo por si la carpeta está vacía o la llamada a GitHub falla
+    var igFallbackPhotos = [
+        'ceramica_producto.jpg',
+        'gres_producto.jpg',
+        'tienda_entrada.jpg'
+    ];
+
+    (function() {
+        var gallery = document.getElementById('igGallery');
+        if (!gallery) return;
+
+        function renderImages(urls) {
+            gallery.innerHTML = '';
+            urls.forEach(function(url) {
+                var img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Bremba-Te\'n';
+                img.loading = 'lazy';
+                gallery.appendChild(img);
+            });
+        }
+
+        function renderFallback() {
+            renderImages(igFallbackPhotos.map(function(f) { return 'assets/' + f; }));
+        }
+
+        var apiUrl = 'https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CARRUSEL_PATH;
+
+        fetch(apiUrl)
+            .then(function(res) {
+                if (!res.ok) throw new Error('GitHub API respondió ' + res.status);
+                return res.json();
+            })
+            .then(function(files) {
+                var imageExt = /\.(jpe?g|png|webp|gif)$/i;
+                var urls = files
+                    .filter(function(f) { return f.type === 'file' && imageExt.test(f.name); })
+                    .map(function(f) { return f.download_url; });
+                if (urls.length === 0) {
+                    renderFallback();
+                } else {
+                    renderImages(urls);
+                }
+            })
+            .catch(function(err) {
+                console.warn('No se pudo cargar la carpeta carrusel desde GitHub, usando respaldo:', err);
+                renderFallback();
+            });
+    })();
+</script>
+
+<script>
     var translations = {
         es: {
             "nav.inicio": "Inicio",
+            "nav.video": "Vídeo",
             "nav.productos": "Cerámica y Gres",
+            "nav.instagram": "Instagram",
             "nav.quienes": "Quiénes somos",
             "nav.resenas": "Reseñas",
             "nav.contacto": "Contacto →",
@@ -1031,16 +1154,21 @@
             "hero.fact3_l": "Origen artesano de cada región",
             "hero.fact4_v": "100% a mano",
             "hero.fact4_l": "Sin dos piezas exactamente iguales",
-            "ig.eyebrow": "Últimas publicaciones",
+            "vid.eyebrow": "Nuestro oficio",
+            "vid.h2": "La cerámica, en movimiento",
+            "vid.lead": "Un vistazo al proceso y a las piezas que encontrarás en la tienda.",
+            "vid.placeholder": "Vídeo próximamente",
+            "ig.eyebrow": "Colecciones",
             "ig.h2": "Síguenos en Instagram",
-            "ig.lead": "@brembaten — piezas nuevas, novedades de tienda y el día a día del taller.",
-            "ig.note": "Feed conectado en directo a @Brembaten vía SociableKIT.",
+            "ig.lead": "@Brembaten, una selección de piezas de nuestras colecciones.",
+            "ig.cta": "Ver más en Instagram",
+            "ig.note": "Galería actualizada por temporada con nuestras últimas colecciones.",
             "prod.eyebrow": "Nuestro catálogo",
             "prod.h2": "¿Cerámica tradicional o Gres?",
             "prod.lead": "Dos materiales, dos terrenos de fuerza. Descubre cuál encaja con lo que buscas.",
             "prod.ceramica.title": "Cerámica Tradicional",
             "prod.ceramica.intro": "La expresión más libre de la alfarería española: color, forma y carácter, pieza a pieza.",
-            "prod.ceramica.process": "Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España — sin dos piezas exactamente iguales.",
+            "prod.ceramica.process": "Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España, sin dos piezas exactamente iguales.",
             "prod.ceramica.b1": "<strong>Color sin límites:</strong> tonos vivos, intensos y variados que reflejan la tradición de cada región.",
             "prod.ceramica.b2": "<strong>Versatilidad total:</strong> vajillas de mesa, tajines y cazuelas de cocina tradicional, jarrones y paragüeros.",
             "prod.ceramica.b3": "<strong>Pieza única, hecha a mano:</strong> ninguna sale igual a otra del torno.",
@@ -1064,15 +1192,15 @@
             "prod.cmp.row3_right": "Uso intensivo diario y hostelería profesional (HORECA)",
             "qs.eyebrow": "Nuestra historia",
             "qs.h2": "Un negocio familiar en el corazón del Val d'Aran",
-            "qs.p1": "Bremba-Te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.",
-            "qs.p2": "En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra — y así queremos que se sienta cada una en tu casa.",
+            "qs.p1": "Bremba-te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.",
+            "qs.p2": "En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra, y así queremos que se sienta cada una en tu casa.",
             "qs.p3": "Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.",
             "rv.eyebrow": "Lo que dicen de nosotros",
             "rv.h2": "Reseñas",
             "rv.lead": "Opiniones reales de clientes que han pasado por la tienda en Bossòst.",
             "rv.count_label": "23 reseñas en",
             "rv.q1": "\u201cBremba-te'n es una tienda de cerámica de referencia. Desde hace más de 40 años ofrece artesanía en estado puro, con trato directo con los talleres más emblemáticos. Bajo el mimo de tres generaciones, con un gusto muy fino en la selección, se vienen citando las mejores cerámicas de toda España. ¡Gracias!\u201d",
-            "rv.q2": "\u201cPaso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad — se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible.\u201d",
+            "rv.q2": "\u201cPaso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad. Se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible.\u201d",
             "rv.q3": "\u201cBonito descubrimiento, esta tienda llena de colores. Objetos preciosos de cerámica y decoración original. Muy buena acogida y servicio. El embalaje está hecho con mucho cuidado para el transporte. Si estás de paso, no dudes en pasarte.\u201d",
             "rv.source1": "Google · reseña original en español",
             "rv.source2": "Google · Local Guide · traducida del francés",
@@ -1092,7 +1220,9 @@
         },
         fr: {
             "nav.inicio": "Accueil",
+            "nav.video": "Vidéo",
             "nav.productos": "Céramique et Grès",
+            "nav.instagram": "Instagram",
             "nav.quienes": "Qui sommes-nous",
             "nav.resenas": "Avis",
             "nav.contacto": "Contact →",
@@ -1110,16 +1240,21 @@
             "hero.fact3_l": "Origine artisanale de chaque région",
             "hero.fact4_v": "100% à la main",
             "hero.fact4_l": "Aucune pièce identique à une autre",
-            "ig.eyebrow": "Dernières publications",
+            "vid.eyebrow": "Notre métier",
+            "vid.h2": "La céramique, en mouvement",
+            "vid.lead": "Un aperçu du processus et des pièces que vous trouverez en boutique.",
+            "vid.placeholder": "Vidéo bientôt disponible",
+            "ig.eyebrow": "Collections",
             "ig.h2": "Suivez-nous sur Instagram",
-            "ig.lead": "@brembaten — nouvelles pièces, actualités de la boutique et le quotidien de l'atelier.",
-            "ig.note": "Fil connecté en direct à @Brembaten via SociableKIT.",
+            "ig.lead": "@Brembaten, une sélection de pièces de nos collections.",
+            "ig.cta": "Voir plus sur Instagram",
+            "ig.note": "Galerie mise à jour par saison avec nos dernières collections.",
             "prod.eyebrow": "Notre catalogue",
             "prod.h2": "Céramique traditionnelle ou Grès ?",
             "prod.lead": "Deux matériaux, deux terrains de force. Découvrez celui qui correspond à ce que vous cherchez.",
             "prod.ceramica.title": "Céramique traditionnelle",
             "prod.ceramica.intro": "L'expression la plus libre de la poterie espagnole : couleur, forme et caractère, pièce après pièce.",
-            "prod.ceramica.process": "Cuite à température modérée et habillée d'émaux vifs, chaque pièce naît du métier de potiers de différentes régions d'Espagne — aucune pièce n'est identique à une autre.",
+            "prod.ceramica.process": "Cuite à température modérée et habillée d'émaux vifs, chaque pièce naît du métier de potiers de différentes régions d'Espagne. Aucune pièce n'est identique à une autre.",
             "prod.ceramica.b1": "<strong>Couleur sans limites :</strong> des teintes vives, intenses et variées qui reflètent la tradition de chaque région.",
             "prod.ceramica.b2": "<strong>Polyvalence totale :</strong> vaisselle de table, tajines et cocottes de cuisine traditionnelle, vases et porte-parapluies.",
             "prod.ceramica.b3": "<strong>Pièce unique, faite main :</strong> aucune ne sort identique à une autre du tour.",
@@ -1143,15 +1278,15 @@
             "prod.cmp.row3_right": "Usage intensif quotidien et hôtellerie professionnelle (HORECA)",
             "qs.eyebrow": "Notre histoire",
             "qs.h2": "Un commerce familial au cœur du Val d'Aran",
-            "qs.p1": "Bremba-Te'n a ouvert ses portes à Bossòst en 1978 et est depuis un commerce familial dédié à l'artisanat et à la décoration. Génération après génération, nous sélectionnons pièce par pièce une céramique espagnole faite et peinte à la main.",
-            "qs.p2": "En boutique, vous trouverez des arts de la table, de la décoration et des pièces pour l'extérieur : vaisselle aux couleurs vives, vases et jardinières, porte-parapluies, et ustensiles de cuisine traditionnelle comme les tajines et cocottes en terre cuite. Aucune pièce n'est identique à une autre — et c'est ainsi que nous voulons que chacune se sente chez vous.",
+            "qs.p1": "Bremba-te'n a ouvert ses portes à Bossòst en 1978 et est depuis un commerce familial dédié à l'artisanat et à la décoration. Génération après génération, nous sélectionnons pièce par pièce une céramique espagnole faite et peinte à la main.",
+            "qs.p2": "En boutique, vous trouverez des arts de la table, de la décoration et des pièces pour l'extérieur : vaisselle aux couleurs vives, vases et jardinières, porte-parapluies, et ustensiles de cuisine traditionnelle comme les tajines et cocottes en terre cuite. Aucune pièce n'est identique à une autre, et c'est ainsi que nous voulons que chacune se sente chez vous.",
             "qs.p3": "Si vous passez par le Val d'Aran, nous vous attendons à Bossòst pour voir et toucher les pièces en personne.",
             "rv.eyebrow": "Ce que l'on dit de nous",
             "rv.h2": "Avis",
             "rv.lead": "Avis réels de clients qui sont passés par la boutique à Bossòst.",
             "rv.count_label": "23 avis sur",
             "rv.q1": "\u00abBremba-te'n est une boutique de céramique de référence. Depuis plus de 40 ans, elle propose un artisanat à l'état pur, en contact direct avec les ateliers les plus emblématiques. Sous le soin de trois générations, avec un goût très raffiné dans la sélection, on y retrouve les meilleures céramiques de toute l'Espagne. Merci !\u00bb",
-            "rv.q2": "\u00abJe passe dans cette boutique de céramique à chaque fois que je suis de passage à Bossòst, et c'est toujours un vrai plaisir. Les pièces proposées sont uniques, magnifiques et d'une grande qualité — on sent qu'elles sont faites pour durer dans le temps. J'apprécie particulièrement le fait que les collections changent régulièrement. Mention spéciale pour le gérant, extrêmement sympathique. Une adresse incontournable.\u00bb",
+            "rv.q2": "\u00abJe passe dans cette boutique de céramique à chaque fois que je suis de passage à Bossòst, et c'est toujours un vrai plaisir. Les pièces proposées sont uniques, magnifiques et d'une grande qualité. On sent qu'elles sont faites pour durer dans le temps. J'apprécie particulièrement le fait que les collections changent régulièrement. Mention spéciale pour le gérant, extrêmement sympathique. Une adresse incontournable.\u00bb",
             "rv.q3": "\u00abJolie découverte que cette échoppe pleine de couleurs. De beaux objets en céramique et de la décoration originale. Très bel accueil et service. L'emballage est vraiment fait avec précaution pour le transport. Si vous êtes de passage, n'hésitez pas à vous arrêter.\u00bb",
             "rv.source1": "Google · avis original en espagnol",
             "rv.source2": "Google · Local Guide · avis original",
@@ -1171,7 +1306,9 @@
         },
         oc: {
             "nav.inicio": "Entrada",
+            "nav.video": "Vidèo",
             "nav.productos": "Ceramica e Grès",
+            "nav.instagram": "Instagram",
             "nav.quienes": "Qui èm",
             "nav.resenas": "Comentaris",
             "nav.contacto": "Contacte →",
@@ -1189,16 +1326,21 @@
             "hero.fact3_l": "Origina artesana de cada region",
             "hero.fact4_v": "100% a man",
             "hero.fact4_l": "Cap pèça non ei identica a un aute",
-            "ig.eyebrow": "Darrèras publicacions",
+            "vid.eyebrow": "Eth nòste ofici",
+            "vid.h2": "Era ceramica, en movement",
+            "vid.lead": "Ua ulhada ath procès e as pèces que trobaràs ena botiga.",
+            "vid.placeholder": "Vidèo pro viste",
+            "ig.eyebrow": "Colleccions",
             "ig.h2": "Seguís-mos en Instagram",
-            "ig.lead": "@brembaten — pèces navèras, novetats dera botiga e eth dia a dia deth talhèr.",
-            "ig.note": "Flux connectat en dirècte a @Brembaten via SociableKIT.",
+            "ig.lead": "@Brembaten, ua seleccion de pèces des nòstes colleccions.",
+            "ig.cta": "Vei mès en Instagram",
+            "ig.note": "Galeria actualizada per temporada damb es nòstes darrères colleccions.",
             "prod.eyebrow": "Eth nòste catalòg",
             "prod.h2": "Ceramica tradicionau o Grès?",
             "prod.lead": "Dus materiaus, dus terrenhs de fòrça. Descobrís quin s'ajusta damb çò que cèrques.",
             "prod.ceramica.title": "Ceramica Tradicionau",
             "prod.ceramica.intro": "L'expression mès liura dera alfareria espanhòla: color, fòrma e caractèr, pèça per pèça.",
-            "prod.ceramica.process": "Cueita a temperatura moderada e vestida damb esmalts vius, cada pèça neish deth ofici d'alfarèrs de diferentas regions d'Espanha — cap pèça non ei identica a un aute.",
+            "prod.ceramica.process": "Cueita a temperatura moderada e vestida damb esmalts vius, cada pèça neish deth ofici d'alfarèrs de diferentas regions d'Espanha. Cap pèça non ei identica a un aute.",
             "prod.ceramica.b1": "<strong>Color sense limits:</strong> tons vius, intensos e variats que reflectissen era tradicion de cada region.",
             "prod.ceramica.b2": "<strong>Versatilitat totau:</strong> veishèra de taula, tajines e cassòlas de cosina tradicionau, gèrras e paraigüèrs.",
             "prod.ceramica.b3": "<strong>Pèça unica, hèta a man:</strong> cap non ges identica a un aute deth torn.",
@@ -1222,15 +1364,15 @@
             "prod.cmp.row3_right": "Usatge intensiu de cada dia e hostalaria professionau (HORECA)",
             "qs.eyebrow": "Era nòsta istòria",
             "qs.h2": "Un negòci familiar en còr dera Val d'Aran",
-            "qs.p1": "Bremba-Te'n daurí es sues pòrtes a Bossòst en 1978 e dempús ei un negòci familiar dedicat ar artesanat e ara decoracion. De generacion en generacion, seleccionam pèça per pèça ceramica espanhòla hèta e pintada a man.",
-            "qs.p2": "Ena botiga trobaràs menatge de taula, decoracion e pèces entà l'exterior: veishèra de color viu, gèrras e testets, paraigüèrs, e estris de cosina tradicionau coma tajines e cassòlas de tèrra. Cap pèça non ei identica a un aute — e atau volem que se senta cada ua ena tua casa.",
+            "qs.p1": "Bremba-te'n daurí es sues pòrtes a Bossòst en 1978 e dempús ei un negòci familiar dedicat ar artesanat e ara decoracion. De generacion en generacion, seleccionam pèça per pèça ceramica espanhòla hèta e pintada a man.",
+            "qs.p2": "Ena botiga trobaràs menatge de taula, decoracion e pèces entà l'exterior: veishèra de color viu, gèrras e testets, paraigüèrs, e estris de cosina tradicionau coma tajines e cassòlas de tèrra. Cap pèça non ei identica a un aute, e atau volem que se senta cada ua ena tua casa.",
             "qs.p3": "Se passes pera Val d'Aran, t'esperam a Bossòst entà que veigues e tòques es pèces en persona.",
             "rv.eyebrow": "Çò que díden de nosati",
             "rv.h2": "Comentaris",
             "rv.lead": "Opinions reaus de clients qu'an passat pera botiga a Bossòst.",
             "rv.count_label": "23 comentaris en",
             "rv.q1": "«Bremba-te'n ei ua botiga de ceramica de referéncia. Dès hè mès de 40 ans aufrís artesanat en estat pur, en contacte dirècte damb es talhèrs mès emblematics. Sota era cura de tres generacions, damb un gost fòrça fin ena seleccion, s'i trapen es milhors ceramicas de tota Espanha. Mercés!»",
-            "rv.q2": "«Passi per aguesta botiga de ceramica cada còp que sò de passatge a Bossòst, e ei totjorn un vertadèr plaser. Es pèces son unicas, magnificas e d'ua grana qualitat — se sent que son hètas entà durar. M'agrada qu'es colleccions cambien regularament. Mencion especiau entath gerent, fòrça simpatic. Ua adreça indispensabla.»",
+            "rv.q2": "«Passi per aguesta botiga de ceramica cada còp que sò de passatge a Bossòst, e ei totjorn un vertadèr plaser. Es pèces son unicas, magnificas e d'ua grana qualitat. Se sent que son hètas entà durar. M'agrada qu'es colleccions cambien regularament. Mencion especiau entath gerent, fòrça simpatic. Ua adreça indispensabla.»",
             "rv.q3": "«Beròi descobriment aguesta botiga plia de colors. Beròis objèctes de ceramica e decoracion originau. Fòrça bona acuelhuda e servici. Er embalatge ei hèt damb fòrça cura entath transpòrt. Se ès de passatge, non dobtes pas a t'arrestar.»",
             "rv.source1": "Google · comentari originau en espanhòl",
             "rv.source2": "Google · Local Guide · reviratat deth francés",
@@ -1286,7 +1428,7 @@
     (function() {
         var nav = document.getElementById('siteNav');
         var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-        var sectionIds = ['inicio','instagram','productos','quienes-somos','resenas','contacto'];
+        var sectionIds = ['inicio','video','productos','instagram','quienes-somos','resenas','contacto'];
 
         navLinks.forEach(function(link) {
             link.addEventListener('click', function(e) {
