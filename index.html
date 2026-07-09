@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bremba-Te'n · Artesania e Decoracion · Bossòst, Val d'Aran</title>
+<link rel="icon" type="image/jpeg" href="assets/logo_bremba.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --parchment: #F6F0E1;
+        --parchment-dark: #EDE3CC;
+        --ink: #241C15;
+        --ink-soft: #5C5140;
+        --granate: #7A1315;
+        --granate-deep: #4E0C0E;
+        --dorado: #B8860B;
+        --terracota: #C1652F;
+        --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--parchment);
+        color: var(--ink);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        color: var(--ink);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .site-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 999;
+        background: rgba(36, 28, 21, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(184,134,11,0.25);
+        height: 64px;
+    }
+
+    .site-nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: 24px;
+        flex-shrink: 0;
+    }
+
+    .nav-brand img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid var(--dorado);
+    }
+
+    .nav-brand span {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--white);
+        letter-spacing: 0.3px;
+    }
+
+    .nav-divider {
+        width: 1px;
+        height: 20px;
+        background: rgba(255,255,255,0.15);
+        margin-right: 8px;
+        flex-shrink: 0;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        flex: 1;
+    }
+
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+        font-size: 13.5px;
+        font-weight: 500;
+        color: rgba(255,255,255,0.65);
+        padding: 8px 14px;
+        border-radius: 6px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .nav-link:hover {
+        color: var(--white);
+        background: rgba(255,255,255,0.08);
+    }
+
+    .nav-link.active {
+        color: var(--white);
+        background: rgba(184,134,11,0.22);
+        font-weight: 600;
+    }
+
+    .nav-link.nav-cta {
+        background: linear-gradient(90deg, var(--granate), var(--terracota));
+        color: var(--white);
+        font-weight: 600;
+        margin-left: 10px;
+        padding: 8px 16px;
+    }
+
+    .nav-link.nav-cta:hover {
+        box-shadow: 0 3px 14px rgba(122,19,21,0.45);
+    }
+
+    .lang-switch {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-left: 14px;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 7px;
+        padding: 3px;
+        flex-shrink: 0;
+    }
+
+    .lang-btn {
+        font-family: 'Inter', sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.55);
+        padding: 5px 9px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .lang-btn:hover { color: var(--white); }
+
+    .lang-btn.active {
+        background: var(--dorado);
+        color: var(--ink);
+    }
+
+    @media (max-width: 640px) {
+        .lang-switch { margin-left: 6px; }
+        .lang-btn { padding: 5px 6px; font-size: 10.5px; }
+    }
+
+    #inicio { scroll-margin-top: 64px; margin-top: 64px; }
+    #instagram, #productos, #quienes-somos, #resenas, #contacto { scroll-margin-top: 64px; }
+
+    @media (max-width: 768px) {
+        .nav-brand span { display: none; }
+        .site-nav-inner { padding: 0 14px; }
+        .nav-link { font-size: 12px; padding: 7px 10px; }
+    }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+        position: relative;
+        background:
+            linear-gradient(160deg, rgba(78,12,14,0.93) 0%, rgba(28,17,12,0.96) 75%),
+            url('assets/madera_textura.jpg');
+        background-size: cover, 260px 260px;
+        background-position: center, center;
+        background-repeat: no-repeat, repeat;
+        color: var(--white);
+        overflow: hidden;
+        padding: 100px 40px 90px;
+    }
+
+    .hero-cross {
+        position: absolute;
+        right: -40px;
+        top: -20px;
+        width: 480px;
+        height: 480px;
+        object-fit: cover;
+        border-radius: 50%;
+        opacity: 0.9;
+        -webkit-mask-image: radial-gradient(circle at 65% 35%, black 42%, transparent 72%);
+        mask-image: radial-gradient(circle at 65% 35%, black 42%, transparent 72%);
+        pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        .hero-cross { width: 320px; height: 320px; right: -60px; top: -10px; }
+    }
+
+    .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(184,134,11,0.18);
+        border: 1px solid rgba(184,134,11,0.45);
+        color: #E9C468;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 7px 16px;
+        border-radius: 20px;
+        margin-bottom: 28px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 1.15;
+        max-width: 680px;
+        margin-bottom: 22px;
+        color: var(--white);
+    }
+
+    .hero h1 em {
+        font-style: italic;
+        color: #E9C468;
+    }
+
+    .hero-sub {
+        font-size: 18px;
+        color: rgba(255,255,255,0.8);
+        max-width: 540px;
+        margin-bottom: 40px;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 48px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(90deg, var(--granate), var(--terracota));
+        color: var(--white);
+    }
+
+    .btn-primary:hover { box-shadow: 0 6px 20px rgba(122,19,21,0.5); transform: translateY(-1px); }
+
+    .btn-outline {
+        border: 1.5px solid rgba(255,255,255,0.35);
+        color: var(--white);
+    }
+
+    .btn-outline:hover { border-color: var(--dorado); color: #E9C468; }
+
+    .hero-facts {
+        display: flex;
+        gap: 40px;
+        border-top: 1px solid rgba(255,255,255,0.15);
+        padding-top: 32px;
+        flex-wrap: wrap;
+    }
+
+    .hero-fact-value {
+        font-family: 'Fraunces', serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #E9C468;
+        display: block;
+    }
+
+    .hero-fact-label {
+        font-size: 12.5px;
+        color: rgba(255,255,255,0.65);
+        margin-top: 3px;
+        max-width: 160px;
+        line-height: 1.4;
+    }
+
+    /* ── SECTIONS ────────────────────────────────────── */
+    section {
+        padding: 80px 40px;
+        border-bottom: 1px solid rgba(36,28,21,0.08);
+    }
+
+    .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .section-eyebrow {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--granate);
+        margin-bottom: 14px;
+    }
+
+    section h2 {
+        font-size: 34px;
+        margin-bottom: 16px;
+        max-width: 640px;
+    }
+
+    .section-lead {
+        font-size: 17px;
+        color: var(--ink-soft);
+        max-width: 640px;
+        margin-bottom: 40px;
+        line-height: 1.7;
+    }
+
+    /* ── INSTAGRAM ───────────────────────────────────── */
+    .instagram-section {
+        background: var(--parchment-dark);
+    }
+
+    .ig-widget-frame {
+        background: var(--white);
+        border: 1px solid rgba(36,28,21,0.1);
+        border-radius: 14px;
+        padding: 24px;
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Grid de respaldo mientras se conecta el widget real de Instagram */
+    .ig-fallback-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+        width: 100%;
+    }
+
+    .ig-fallback-grid img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .ig-note {
+        margin-top: 18px;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        text-align: center;
+    }
+
+    .ig-note code {
+        background: rgba(36,28,21,0.06);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+
+    /* ── PRODUCTOS (cerámica vs gres) ───────────────────── */
+    .productos-section { background: var(--white); }
+
+    .prod-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 50px;
+    }
+
+    .prod-card {
+        background: var(--parchment);
+        border-radius: 14px;
+        padding: 32px;
+        border-top: 8px solid var(--dorado);
+    }
+
+    .prod-card.gres { border-top-color: var(--granate); }
+
+    .prod-card h3 {
+        font-size: 24px;
+        margin-bottom: 18px;
+        text-align: center;
+    }
+
+    .prod-photo {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .prod-intro {
+        font-weight: 600;
+        font-size: 16.5px;
+        margin-bottom: 12px;
+    }
+
+    .prod-process {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        margin-bottom: 26px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed rgba(36,28,21,0.15);
+    }
+
+    .prod-card ul {
+        list-style: none;
+        margin-bottom: 26px;
+    }
+
+    .prod-card li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 15px;
+        margin-bottom: 14px;
+        line-height: 1.5;
+    }
+
+    .icon {
+        width: 24px; height: 24px;
+        flex-shrink: 0;
+        stroke-width: 1.6;
+        fill: none;
+        margin-top: 1px;
+    }
+
+    .prod-card.ceramica .icon { stroke: var(--dorado); }
+    .prod-card.gres .icon { stroke: var(--granate); }
+
+    .prod-ideal {
+        background: var(--white);
+        border-radius: 8px;
+        padding: 18px;
+        font-size: 14.5px;
+        line-height: 1.5;
+    }
+
+    .prod-ideal strong { display: block; margin-bottom: 5px; }
+
+    .comparison-table {
+        background: var(--parchment);
+        border-radius: 14px;
+        padding: 32px;
+    }
+
+    .comparison-table h3 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .cmp-row {
+        display: flex;
+        align-items: center;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(36,28,21,0.1);
+        gap: 20px;
+    }
+
+    .cmp-row:last-child { border-bottom: none; }
+
+    .cmp-label {
+        flex: 0 0 180px;
+        font-weight: 700;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--granate);
+    }
+
+    .cmp-label .icon { stroke: var(--granate); width: 20px; height: 20px; margin: 0; }
+
+    .cmp-content {
+        flex: 1;
+        font-size: 14.5px;
+        color: var(--ink-soft);
+    }
+
+    .cmp-content.left { text-align: right; }
+
+    /* ── RESEÑAS ─────────────────────────────────────── */
+    .resenas-section { background: var(--white); }
+
+    .resenas-rating {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        background: var(--parchment);
+        border-radius: 12px;
+        padding: 20px 26px;
+        margin-bottom: 40px;
+        max-width: 420px;
+    }
+
+    .resenas-rating .stars {
+        color: var(--dorado);
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    .resenas-rating .score {
+        font-family: 'Fraunces', serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--ink);
+    }
+
+    .resenas-rating .meta {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+    }
+
+    .resenas-rating a {
+        color: var(--granate);
+        font-weight: 600;
+    }
+
+    .resenas-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 36px;
+    }
+
+    .resena-card {
+        background: var(--parchment);
+        border-radius: 12px;
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .resena-card .stars {
+        color: var(--dorado);
+        font-size: 15px;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .resena-card p {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        margin-bottom: 18px;
+        flex: 1;
+    }
+
+    .resena-author {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+    }
+
+    .resena-source {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+    }
+
+    @media (max-width: 900px) {
+        .resenas-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── QUIENES SOMOS ──────────────────────────────────── */
+    .quienes-section {
+        background: var(--parchment);
+    }
+
+    .quienes-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .quienes-grid img {
+        border-radius: 14px;
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+    }
+
+    .quienes-text p {
+        font-size: 16px;
+        color: var(--ink-soft);
+        margin-bottom: 18px;
+        line-height: 1.75;
+    }
+
+    /* ── CONTACTO ──────────────────────────────────────── */
+    .contacto-section {
+        background: linear-gradient(160deg, var(--granate-deep) 0%, #1c110c 100%);
+        color: var(--white);
+    }
+
+    .contacto-section .section-eyebrow { color: #E9C468; }
+    .contacto-section h2 { color: var(--white); }
+    .contacto-section .section-lead { color: rgba(255,255,255,0.75); }
+
+    .contacto-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        margin-bottom: 28px;
+    }
+
+    .contacto-map {
+        width: 100%;
+        height: 320px;
+        border: 0;
+        border-radius: 12px;
+        filter: grayscale(0.15) contrast(1.05);
+    }
+
+    .contacto-card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 12px;
+        padding: 26px;
+    }
+
+    .contacto-card .icon { stroke: #E9C468; width: 28px; height: 28px; margin-bottom: 14px; }
+
+    .contacto-card h4 {
+        font-family: 'Fraunces', serif;
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .contacto-card p, .contacto-card a {
+        font-size: 14.5px;
+        color: rgba(255,255,255,0.75);
+        line-height: 1.6;
+    }
+
+    .contacto-card a:hover { color: #E9C468; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+        background: #1c110c;
+        color: rgba(255,255,255,0.6);
+        text-align: center;
+        padding: 40px;
+    }
+
+    footer .footer-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    footer img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    footer .footer-name {
+        font-family: 'Fraunces', serif;
+        font-size: 18px;
+        color: var(--white);
+        letter-spacing: 0.5px;
+    }
+
+    footer p { font-size: 13px; }
+
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 36px; }
+        .prod-columns, .quienes-grid { grid-template-columns: 1fr; }
+        .quienes-grid img { height: 280px; }
+        .cmp-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+        .cmp-content.left { text-align: left; }
+        section { padding: 56px 20px; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Sprite de iconos de línea -->
+    <svg style="display:none">
+        <symbol id="icon-flame" viewBox="0 0 24 24">
+            <path d="M12 2 C8 8 6 10 6 14 C6 18 9 21 12 21 C15 21 18 18 18 14 C18 10 16 8 12 2 Z" />
+            <path d="M12 21 C10 19 10 16 12 13 C14 16 14 19 12 21 Z" />
+        </symbol>
+        <symbol id="icon-drop" viewBox="0 0 24 24">
+            <path d="M12 3 C8 9 6 13 6 16 a6 6 0 0 0 12 0 C18 13 16 9 12 3 Z" />
+        </symbol>
+        <symbol id="icon-wheel" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5.5" />
+            <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="icon-thumbprint" viewBox="0 0 24 24">
+            <path d="M12 4 a8 8 0 1 1 -0.1 0" />
+            <path d="M12 7.5 a4.5 4.5 0 1 1 -0.1 0" />
+            <path d="M12 11 a1 1 0 1 1 -0.1 0" />
+        </symbol>
+        <symbol id="icon-plate" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="12" rx="9" ry="9" />
+            <ellipse cx="12" cy="12" rx="4" ry="4" />
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 3 L20 6.2 V12 C20 17 16.2 20 12 21 C7.8 20 4 17 4 12 V6.2 Z" />
+        </symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="6.5" height="6.5" rx="1" />
+            <rect x="13.5" y="4" width="6.5" height="6.5" rx="1" />
+            <rect x="4" y="13.5" width="6.5" height="6.5" rx="1" />
+            <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1" />
+        </symbol>
+        <symbol id="icon-cutlery" viewBox="0 0 24 24">
+            <path d="M6 2 V10 M4 2 V7 a2 2 0 0 0 2 2 a2 2 0 0 0 2 -2 V2 M6 10 V22" />
+            <path d="M17 2 C15 2 14 5 14 8 C14 9.5 15 10.5 16 10.5 V22" />
+        </symbol>
+        <symbol id="icon-pin" viewBox="0 0 24 24">
+            <path d="M12 21 C12 21 19 14.5 19 9.5 A7 7 0 0 0 5 9.5 C5 14.5 12 21 12 21 Z" />
+            <circle cx="12" cy="9.5" r="2.5" />
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7 V12 L15.5 14" />
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+            <path d="M4 5 h16 v11 H9 l-4 4 V16 H4 Z" />
+        </symbol>
+        <symbol id="icon-instagram" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="icon-link" viewBox="0 0 24 24">
+            <path d="M9 15 L15 9" />
+            <path d="M13 6 L15.5 3.5 a3.5 3.5 0 0 1 5 5 L18 11" />
+            <path d="M11 18 L8.5 20.5 a3.5 3.5 0 0 1 -5 -5 L6 13" />
+        </symbol>
+    </svg>
+
+    <!-- ── NAV ─────────────────────────────────────────── -->
+    <nav class="site-nav" id="siteNav">
+        <div class="site-nav-inner">
+            <a href="#inicio" class="nav-brand">
+                <img src="assets/logo_bremba.jpg" alt="Bremba-Te'n">
+                <span>Bremba-Te'n</span>
+            </a>
+            <div class="nav-divider"></div>
+            <div class="nav-links">
+                <a href="#inicio" class="nav-link active" data-i18n="nav.inicio">Inicio</a>
+                <a href="#productos" class="nav-link" data-i18n="nav.productos">Cerámica y Gres</a>
+                <a href="#quienes-somos" class="nav-link" data-i18n="nav.quienes">Quiénes somos</a>
+                <a href="#resenas" class="nav-link" data-i18n="nav.resenas">Reseñas</a>
+                <a href="#contacto" class="nav-link nav-cta" data-i18n="nav.contacto">Contacto →</a>
+            </div>
+            <div class="lang-switch" id="langSwitch">
+                <button type="button" data-lang="es" class="lang-btn">ES</button>
+                <button type="button" data-lang="oc" class="lang-btn">OC</button>
+                <button type="button" data-lang="fr" class="lang-btn">FR</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── HERO ────────────────────────────────────────── -->
+    <header class="hero" id="inicio">
+        <img src="assets/cruz_aranesa.jpg" alt="Cruz occitana del Val d'Aran" class="hero-cross">
+        <div class="hero-inner">
+            <span class="hero-badge" data-i18n="hero.badge">Bossòst · Val d'Aran</span>
+            <h1><span data-i18n="hero.h1_1">Cerámica hecha a mano,</span> <em data-i18n="hero.h1_em">traída de toda España</em></h1>
+            <p class="hero-sub" data-i18n="hero.sub">Menaje, decoración y exterior en cerámica española hecha y pintada a mano. Negocio familiar en Bossòst desde 1978, con piezas traídas de distintas regiones de España.</p>
+            <div class="hero-actions">
+                <a href="#productos" class="btn btn-primary" data-i18n="hero.btn_primary">Ver cerámica y gres</a>
+                <a href="https://www.google.es/maps/dir//Bremba-te%E2%80%99n,+Carr%C3%A8ra+de+Pietat,+5,+25550+Boss%C3%B2st,+Lleida/@42.7821794,0.692211,886m/data=!3m1!1e3!4m17!1m7!3m6!1s0x12a88da815bda63d:0xb011980bc50cce81!2zQnJlbWJhLXRl4oCZbg!8m2!3d42.7850201!4d0.692201!16s%2Fg%2F11g22xg6t7!4m8!1m0!1m5!1m1!1s0x12a88da815bda63d:0xb011980bc50cce81!2m2!1d0.692201!2d42.7850201!3e0" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero.btn_outline">Cómo llegar</a>
+            </div>
+            <div class="hero-facts">
+                <div class="hero-fact">
+                    <span class="hero-fact-value" data-i18n="hero.fact1_v">Bossòst</span>
+                    <span class="hero-fact-label" data-i18n="hero.fact1_l">Tienda física en el Val d'Aran</span>
+                </div>
+                <div class="hero-fact">
+                    <span class="hero-fact-value" data-i18n="hero.fact2_v">Desde 1978</span>
+                    <span class="hero-fact-label" data-i18n="hero.fact2_l">Negocio familiar, generación tras generación</span>
+                </div>
+                <div class="hero-fact">
+                    <span class="hero-fact-value" data-i18n="hero.fact3_v">Toda España</span>
+                    <span class="hero-fact-label" data-i18n="hero.fact3_l">Origen artesano de cada región</span>
+                </div>
+                <div class="hero-fact">
+                    <span class="hero-fact-value" data-i18n="hero.fact4_v">100% a mano</span>
+                    <span class="hero-fact-label" data-i18n="hero.fact4_l">Sin dos piezas exactamente iguales</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── INSTAGRAM ──────────────────────────────────── -->
+    <section class="instagram-section" id="instagram">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="ig.eyebrow">Últimas publicaciones</div>
+            <h2 data-i18n="ig.h2">Síguenos en Instagram</h2>
+            <p class="section-lead" data-i18n="ig.lead">@brembaten — piezas nuevas, novedades de tienda y el día a día del taller.</p>
+
+            <div class="ig-widget-frame" id="instagram-widget">
+                <div class="sk-ww-instagram-reels" data-embed-id="25695899"></div>
+                <script src="https://widgets.sociablekit.com/instagram-reels/widget.js" defer></script>
+            </div>
+            <p class="ig-note" data-i18n="ig.note">Feed conectado en directo a @Brembaten vía SociableKIT.</p>
+        </div>
+    </section>
+
+    <!-- ── PRODUCTOS: CERÁMICA VS GRES ────────────────── -->
+    <section class="productos-section" id="productos">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="prod.eyebrow">Nuestro catálogo</div>
+            <h2 data-i18n="prod.h2">¿Cerámica tradicional o Gres?</h2>
+            <p class="section-lead" data-i18n="prod.lead">Dos materiales, dos terrenos de fuerza. Descubre cuál encaja con lo que buscas.</p>
+
+            <div class="prod-columns">
+                <div class="prod-card ceramica">
+                    <h3 data-i18n="prod.ceramica.title">Cerámica Tradicional</h3>
+                    <img src="assets/ceramica_producto.jpg" alt="Cerámica tradicional artesanal de colores" class="prod-photo">
+                    <div class="prod-intro" data-i18n="prod.ceramica.intro">La expresión más libre de la alfarería española: color, forma y carácter, pieza a pieza.</div>
+                    <div class="prod-process" data-i18n="prod.ceramica.process">Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España — sin dos piezas exactamente iguales.</div>
+                    <ul>
+                        <li><svg class="icon"><use href="#icon-wheel"/></svg><span data-i18n-html="prod.ceramica.b1"><strong>Color sin límites:</strong> tonos vivos, intensos y variados que reflejan la tradición de cada región.</span></li>
+                        <li><svg class="icon"><use href="#icon-plate"/></svg><span data-i18n-html="prod.ceramica.b2"><strong>Versatilidad total:</strong> vajillas de mesa, tajines y cazuelas de cocina tradicional, jarrones y paragüeros.</span></li>
+                        <li><svg class="icon"><use href="#icon-thumbprint"/></svg><span data-i18n-html="prod.ceramica.b3"><strong>Pieza única, hecha a mano:</strong> ninguna sale igual a otra del torno.</span></li>
+                    </ul>
+                    <div class="prod-ideal" data-i18n-html="prod.ceramica.ideal">
+                        <strong>Ideal para:</strong>
+                        Vajillas de diario y de ocasión, jarrones y floreros decorativos, paragüeros, y piezas de cocina tradicional como tajines y cazuelas de barro.
+                    </div>
+                </div>
+
+                <div class="prod-card gres">
+                    <h3 data-i18n="prod.gres.title">El Gres</h3>
+                    <img src="assets/gres_producto.jpg" alt="Vajilla de gres artesanal" class="prod-photo">
+                    <div class="prod-intro" data-i18n="prod.gres.intro">Cerámica evolucionada hacia la máxima resistencia. Compacto y fuerte como la roca.</div>
+                    <div class="prod-process" data-i18n="prod.gres.process">Nace de una selección de barros y minerales cocidos a temperaturas extremas (+1200°C). El calor vitrifica los materiales, cerrando cualquier poro.</div>
+                    <ul>
+                        <li><svg class="icon"><use href="#icon-drop"/></svg><span data-i18n-html="prod.gres.b1"><strong>Impermeable por naturaleza:</strong> No absorbe ningún líquido, incluso en zonas sin esmalte.</span></li>
+                        <li><svg class="icon"><use href="#icon-shield"/></svg><span data-i18n-html="prod.gres.b2"><strong>Máxima durabilidad:</strong> Altamente resistente a los golpes, desconchones y al desgaste diario.</span></li>
+                        <li><svg class="icon"><use href="#icon-grid"/></svg><span data-i18n-html="prod.gres.b3"><strong>Todo terreno:</strong> Totalmente apto para lavavajillas, microondas y horno.</span></li>
+                    </ul>
+                    <div class="prod-ideal" data-i18n-html="prod.gres.ideal">
+                        <strong>Ideal para:</strong>
+                        Tus tazas del desayuno diario, boles de uso constante y piezas todoterreno. También apto para hostelería y restauración (HORECA).
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-table">
+                <h3 data-i18n="prod.cmp.title">Comparativa rápida</h3>
+                <div class="cmp-row">
+                    <div class="cmp-content left" data-i18n="prod.cmp.row1_left">Cocción moderada o tradicional</div>
+                    <div class="cmp-label"><svg class="icon"><use href="#icon-flame"/></svg><span data-i18n="prod.cmp.row1_label">El fuego</span></div>
+                    <div class="cmp-content" data-i18n="prod.cmp.row1_right">Cocción a temperatura extrema (+1200°C)</div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-content left" data-i18n="prod.cmp.row2_left">Pasta porosa (requiere capa de esmalte)</div>
+                    <div class="cmp-label"><svg class="icon"><use href="#icon-drop"/></svg><span data-i18n="prod.cmp.row2_label">El agua</span></div>
+                    <div class="cmp-content" data-i18n="prod.cmp.row2_right">Porosidad casi nula (impermeable natural)</div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-content left" data-i18n="prod.cmp.row3_left">Mesa, decoración y cocina tradicional (tajín, cazuela)</div>
+                    <div class="cmp-label"><svg class="icon"><use href="#icon-cutlery"/></svg><span data-i18n="prod.cmp.row3_label">Su terreno</span></div>
+                    <div class="cmp-content" data-i18n="prod.cmp.row3_right">Uso intensivo diario y hostelería profesional (HORECA)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── QUIÉNES SOMOS ───────────────────────────────── -->
+    <section class="quienes-section" id="quienes-somos">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="qs.eyebrow">Nuestra historia</div>
+            <h2 data-i18n="qs.h2">Un negocio familiar en el corazón del Val d'Aran</h2>
+            <div class="quienes-grid">
+                <img src="assets/tienda_entrada.jpg" alt="Entrada de la tienda Bremba-Te'n en Bossòst">
+                <div class="quienes-text">
+                    <p data-i18n="qs.p1">Bremba-Te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.</p>
+                    <p data-i18n="qs.p2">En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra — y así queremos que se sienta cada una en tu casa.</p>
+                    <p data-i18n="qs.p3">Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RESEÑAS ──────────────────────────────────────── -->
+    <section class="resenas-section" id="resenas">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="rv.eyebrow">Lo que dicen de nosotros</div>
+            <h2 data-i18n="rv.h2">Reseñas</h2>
+            <p class="section-lead" data-i18n="rv.lead">Opiniones reales de clientes que han pasado por la tienda en Bossòst.</p>
+
+            <div class="resenas-rating">
+                <div class="stars">★★★★★</div>
+                <div>
+                    <span class="score">4,9</span>
+                    <div class="meta"><span data-i18n="rv.count_label">23 reseñas en</span> <a href="https://www.google.es/maps/place/Bremba-te%E2%80%99n/@42.7850201,0.692201,798m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12a88da815bda63d:0xb011980bc50cce81!8m2!3d42.7850201!4d0.692201!16s%2Fg%2F11g22xg6t7" target="_blank" rel="noopener">Google Maps</a></div>
+                </div>
+            </div>
+
+            <div class="resenas-grid">
+                <div class="resena-card">
+                    <div class="stars">★★★★★</div>
+                    <p data-i18n="rv.q1">"Bremba-te'n es una tienda de cerámica de referencia. Desde hace más de 40 años ofrece artesanía en estado puro, con trato directo con los talleres más emblemáticos. Bajo el mimo de tres generaciones, con un gusto muy fino en la selección, se vienen citando las mejores cerámicas de toda España. ¡Gracias!"</p>
+                    <div class="resena-author">Lluís Sebastià</div>
+                    <div class="resena-source" data-i18n="rv.source1">Google · reseña original en español</div>
+                </div>
+                <div class="resena-card">
+                    <div class="stars">★★★★★</div>
+                    <p data-i18n="rv.q2">"Paso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad — se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible."</p>
+                    <div class="resena-author">Julie D.</div>
+                    <div class="resena-source" data-i18n="rv.source2">Google · Local Guide · traducida del francés</div>
+                </div>
+                <div class="resena-card">
+                    <div class="stars">★★★★★</div>
+                    <p data-i18n="rv.q3">"Bonito descubrimiento, esta tienda llena de colores. Objetos preciosos de cerámica y decoración original. Muy buena acogida y servicio. El embalaje está hecho con mucho cuidado para el transporte. Si estás de paso, no dudes en pasarte."</p>
+                    <div class="resena-author">Zed Isdead</div>
+                    <div class="resena-source" data-i18n="rv.source3">Google · Local Guide · traducida del francés</div>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x12a88da815bda63d:0xb011980bc50cce81!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="rv.cta">Déjanos tu reseña</a>
+        </div>
+    </section>
+
+    <!-- ── CONTACTO ─────────────────────────────────────── -->
+    <section class="contacto-section" id="contacto">
+        <div class="section-inner">
+            <div class="section-eyebrow" data-i18n="ct.eyebrow">Visítanos</div>
+            <h2 data-i18n="ct.h2">Contacto</h2>
+            <p class="section-lead" data-i18n="ct.lead">Estamos en Bossòst, Val d'Aran. Escríbenos o pasa por la tienda.</p>
+
+            <div class="contacto-grid">
+                <div class="contacto-card">
+                    <svg class="icon"><use href="#icon-pin"/></svg>
+                    <h4 data-i18n="ct.dir_label">Dirección</h4>
+                    <p><a href="https://www.google.es/maps/dir//Bremba-te%E2%80%99n,+Carr%C3%A8ra+de+Pietat,+5,+25550+Boss%C3%B2st,+Lleida/@42.7821794,0.692211,886m/data=!3m1!1e3!4m17!1m7!3m6!1s0x12a88da815bda63d:0xb011980bc50cce81!2zQnJlbWJhLXRl4oCZbg!8m2!3d42.7850201!4d0.692201!16s%2Fg%2F11g22xg6t7!4m8!1m0!1m5!1m1!1s0x12a88da815bda63d:0xb011980bc50cce81!2m2!1d0.692201!2d42.7850201!3e0" target="_blank" rel="noopener">Carrèra de Pietat, 5<br>25550 Bossòst, Lleida</a></p>
+                </div>
+                <div class="contacto-card">
+                    <svg class="icon"><use href="#icon-clock"/></svg>
+                    <h4 data-i18n="ct.horario_label">Horario</h4>
+                    <p><span data-i18n="ct.horario_dias">Martes a domingo</span><br>10:30–13:00 <span data-i18n="ct.horario_y">y</span> 15:00–19:00<br><span data-i18n="ct.horario_cerrado">Lunes: cerrado</span></p>
+                    <p style="margin-top:10px;"><a href="https://www.google.es/maps/dir//Bremba-te%E2%80%99n,+Carr%C3%A8ra+de+Pietat,+5,+25550+Boss%C3%B2st,+Lleida/@42.7821794,0.692211,886m/data=!3m1!1e3!4m17!1m7!3m6!1s0x12a88da815bda63d:0xb011980bc50cce81!2zQnJlbWJhLXRl4oCZbg!8m2!3d42.7850201!4d0.692201!16s%2Fg%2F11g22xg6t7!4m8!1m0!1m5!1m1!1s0x12a88da815bda63d:0xb011980bc50cce81!2m2!1d0.692201!2d42.7850201!3e0" target="_blank" rel="noopener" data-i18n="ct.como_llegar">Cómo llegar →</a></p>
+                </div>
+                <div class="contacto-card">
+                    <svg class="icon"><use href="#icon-chat"/></svg>
+                    <h4 data-i18n="ct.escribenos_label">Escríbenos</h4>
+                    <p><a href="mailto:ocbrembaten@gmail.com">ocbrembaten@gmail.com</a></p>
+                </div>
+                <div class="contacto-card">
+                    <svg class="icon"><use href="#icon-instagram"/></svg>
+                    <h4>Instagram</h4>
+                    <p><a href="https://www.instagram.com/Brembaten" target="_blank" rel="noopener">@Brembaten</a></p>
+                </div>
+            </div>
+
+            <iframe class="contacto-map" loading="lazy"
+                src="https://www.google.com/maps?q=Carr%C3%A8ra+de+Pietat+5+25550+Boss%C3%B2st+Lleida&output=embed"
+                allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────── -->
+    <footer>
+        <div class="footer-brand">
+            <img src="assets/logo_bremba.jpg" alt="Bremba-Te'n">
+            <span class="footer-name">BREMBA-TE'N</span>
+        </div>
+        <p><span data-i18n="ft.tagline">Artesania e Decoracion</span> · Bossòst · Val d'Aran</p>
+    </footer>
+
+<script>
+    var translations = {
+        es: {
+            "nav.inicio": "Inicio",
+            "nav.productos": "Cerámica y Gres",
+            "nav.quienes": "Quiénes somos",
+            "nav.resenas": "Reseñas",
+            "nav.contacto": "Contacto →",
+            "hero.badge": "Bossòst · Val d'Aran",
+            "hero.h1_1": "Cerámica hecha a mano,",
+            "hero.h1_em": "traída de toda España",
+            "hero.sub": "Menaje, decoración y exterior en cerámica española hecha y pintada a mano. Negocio familiar en Bossòst desde 1978, con piezas traídas de distintas regiones de España.",
+            "hero.btn_primary": "Ver cerámica y gres",
+            "hero.btn_outline": "Cómo llegar",
+            "hero.fact1_v": "Bossòst",
+            "hero.fact1_l": "Tienda física en el Val d'Aran",
+            "hero.fact2_v": "Desde 1978",
+            "hero.fact2_l": "Negocio familiar, generación tras generación",
+            "hero.fact3_v": "Toda España",
+            "hero.fact3_l": "Origen artesano de cada región",
+            "hero.fact4_v": "100% a mano",
+            "hero.fact4_l": "Sin dos piezas exactamente iguales",
+            "ig.eyebrow": "Últimas publicaciones",
+            "ig.h2": "Síguenos en Instagram",
+            "ig.lead": "@brembaten — piezas nuevas, novedades de tienda y el día a día del taller.",
+            "ig.note": "Feed conectado en directo a @Brembaten vía SociableKIT.",
+            "prod.eyebrow": "Nuestro catálogo",
+            "prod.h2": "¿Cerámica tradicional o Gres?",
+            "prod.lead": "Dos materiales, dos terrenos de fuerza. Descubre cuál encaja con lo que buscas.",
+            "prod.ceramica.title": "Cerámica Tradicional",
+            "prod.ceramica.intro": "La expresión más libre de la alfarería española: color, forma y carácter, pieza a pieza.",
+            "prod.ceramica.process": "Cocida a temperatura moderada y vestida con esmaltes vivos, cada pieza nace del oficio de alfareros de distintas regiones de España — sin dos piezas exactamente iguales.",
+            "prod.ceramica.b1": "<strong>Color sin límites:</strong> tonos vivos, intensos y variados que reflejan la tradición de cada región.",
+            "prod.ceramica.b2": "<strong>Versatilidad total:</strong> vajillas de mesa, tajines y cazuelas de cocina tradicional, jarrones y paragüeros.",
+            "prod.ceramica.b3": "<strong>Pieza única, hecha a mano:</strong> ninguna sale igual a otra del torno.",
+            "prod.ceramica.ideal": "<strong>Ideal para:</strong> Vajillas de diario y de ocasión, jarrones y floreros decorativos, paragüeros, y piezas de cocina tradicional como tajines y cazuelas de barro.",
+            "prod.gres.title": "El Gres",
+            "prod.gres.intro": "Cerámica evolucionada hacia la máxima resistencia. Compacto y fuerte como la roca.",
+            "prod.gres.process": "Nace de una selección de barros y minerales cocidos a temperaturas extremas (+1200°C). El calor vitrifica los materiales, cerrando cualquier poro.",
+            "prod.gres.b1": "<strong>Impermeable por naturaleza:</strong> No absorbe ningún líquido, incluso en zonas sin esmalte.",
+            "prod.gres.b2": "<strong>Máxima durabilidad:</strong> Altamente resistente a los golpes, desconchones y al desgaste diario.",
+            "prod.gres.b3": "<strong>Todo terreno:</strong> Totalmente apto para lavavajillas, microondas y horno.",
+            "prod.gres.ideal": "<strong>Ideal para:</strong> Tus tazas del desayuno diario, boles de uso constante y piezas todoterreno. También apto para hostelería y restauración (HORECA).",
+            "prod.cmp.title": "Comparativa rápida",
+            "prod.cmp.row1_left": "Cocción moderada o tradicional",
+            "prod.cmp.row1_label": "El fuego",
+            "prod.cmp.row1_right": "Cocción a temperatura extrema (+1200°C)",
+            "prod.cmp.row2_left": "Pasta porosa (requiere capa de esmalte)",
+            "prod.cmp.row2_label": "El agua",
+            "prod.cmp.row2_right": "Porosidad casi nula (impermeable natural)",
+            "prod.cmp.row3_left": "Mesa, decoración y cocina tradicional (tajín, cazuela)",
+            "prod.cmp.row3_label": "Su terreno",
+            "prod.cmp.row3_right": "Uso intensivo diario y hostelería profesional (HORECA)",
+            "qs.eyebrow": "Nuestra historia",
+            "qs.h2": "Un negocio familiar en el corazón del Val d'Aran",
+            "qs.p1": "Bremba-Te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.",
+            "qs.p2": "En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra — y así queremos que se sienta cada una en tu casa.",
+            "qs.p3": "Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.",
+            "rv.eyebrow": "Lo que dicen de nosotros",
+            "rv.h2": "Reseñas",
+            "rv.lead": "Opiniones reales de clientes que han pasado por la tienda en Bossòst.",
+            "rv.count_label": "23 reseñas en",
+            "rv.q1": "\u201cBremba-te'n es una tienda de cerámica de referencia. Desde hace más de 40 años ofrece artesanía en estado puro, con trato directo con los talleres más emblemáticos. Bajo el mimo de tres generaciones, con un gusto muy fino en la selección, se vienen citando las mejores cerámicas de toda España. ¡Gracias!\u201d",
+            "rv.q2": "\u201cPaso por esta tienda cada vez que estoy en Bossòst, y siempre es un verdadero placer. Las piezas son únicas, magníficas y de gran calidad — se nota que están hechas para durar. Me gusta que las colecciones cambian con regularidad. Mención especial para el encargado, extremadamente simpático. Una dirección imprescindible.\u201d",
+            "rv.q3": "\u201cBonito descubrimiento, esta tienda llena de colores. Objetos preciosos de cerámica y decoración original. Muy buena acogida y servicio. El embalaje está hecho con mucho cuidado para el transporte. Si estás de paso, no dudes en pasarte.\u201d",
+            "rv.source1": "Google · reseña original en español",
+            "rv.source2": "Google · Local Guide · traducida del francés",
+            "rv.source3": "Google · Local Guide · traducida del francés",
+            "rv.cta": "Déjanos tu reseña",
+            "ct.eyebrow": "Visítanos",
+            "ct.h2": "Contacto",
+            "ct.lead": "Estamos en Bossòst, Val d'Aran. Escríbenos o pasa por la tienda.",
+            "ct.dir_label": "Dirección",
+            "ct.horario_label": "Horario",
+            "ct.horario_dias": "Martes a domingo",
+            "ct.horario_y": "y",
+            "ct.horario_cerrado": "Lunes: cerrado",
+            "ct.como_llegar": "Cómo llegar →",
+            "ct.escribenos_label": "Escríbenos",
+            "ft.tagline": "Artesania e Decoracion"
+        },
+        fr: {
+            "nav.inicio": "Accueil",
+            "nav.productos": "Céramique et Grès",
+            "nav.quienes": "Qui sommes-nous",
+            "nav.resenas": "Avis",
+            "nav.contacto": "Contact →",
+            "hero.badge": "Bossòst · Val d'Aran",
+            "hero.h1_1": "Céramique faite à la main,",
+            "hero.h1_em": "venue de toute l'Espagne",
+            "hero.sub": "Arts de la table, décoration et extérieur en céramique espagnole faite et peinte à la main. Commerce familial à Bossòst depuis 1978, avec des pièces venues de différentes régions d'Espagne.",
+            "hero.btn_primary": "Voir céramique et grès",
+            "hero.btn_outline": "Comment venir",
+            "hero.fact1_v": "Bossòst",
+            "hero.fact1_l": "Boutique physique en Val d'Aran",
+            "hero.fact2_v": "Depuis 1978",
+            "hero.fact2_l": "Commerce familial, de génération en génération",
+            "hero.fact3_v": "Toute l'Espagne",
+            "hero.fact3_l": "Origine artisanale de chaque région",
+            "hero.fact4_v": "100% à la main",
+            "hero.fact4_l": "Aucune pièce identique à une autre",
+            "ig.eyebrow": "Dernières publications",
+            "ig.h2": "Suivez-nous sur Instagram",
+            "ig.lead": "@brembaten — nouvelles pièces, actualités de la boutique et le quotidien de l'atelier.",
+            "ig.note": "Fil connecté en direct à @Brembaten via SociableKIT.",
+            "prod.eyebrow": "Notre catalogue",
+            "prod.h2": "Céramique traditionnelle ou Grès ?",
+            "prod.lead": "Deux matériaux, deux terrains de force. Découvrez celui qui correspond à ce que vous cherchez.",
+            "prod.ceramica.title": "Céramique traditionnelle",
+            "prod.ceramica.intro": "L'expression la plus libre de la poterie espagnole : couleur, forme et caractère, pièce après pièce.",
+            "prod.ceramica.process": "Cuite à température modérée et habillée d'émaux vifs, chaque pièce naît du métier de potiers de différentes régions d'Espagne — aucune pièce n'est identique à une autre.",
+            "prod.ceramica.b1": "<strong>Couleur sans limites :</strong> des teintes vives, intenses et variées qui reflètent la tradition de chaque région.",
+            "prod.ceramica.b2": "<strong>Polyvalence totale :</strong> vaisselle de table, tajines et cocottes de cuisine traditionnelle, vases et porte-parapluies.",
+            "prod.ceramica.b3": "<strong>Pièce unique, faite main :</strong> aucune ne sort identique à une autre du tour.",
+            "prod.ceramica.ideal": "<strong>Idéal pour :</strong> Vaisselle de tous les jours et d'occasion, vases et jardinières décoratives, porte-parapluies, et pièces de cuisine traditionnelle comme les tajines et cocottes en terre cuite.",
+            "prod.gres.title": "Le Grès",
+            "prod.gres.intro": "Céramique évoluée vers une résistance maximale. Compacte et solide comme la roche.",
+            "prod.gres.process": "Elle naît d'une sélection d'argiles et de minéraux cuits à des températures extrêmes (+1200°C). La chaleur vitrifie les matériaux, fermant tout pore.",
+            "prod.gres.b1": "<strong>Imperméable par nature :</strong> N'absorbe aucun liquide, même sur les zones sans émail.",
+            "prod.gres.b2": "<strong>Durabilité maximale :</strong> Très résistant aux chocs, aux éclats et à l'usure quotidienne.",
+            "prod.gres.b3": "<strong>Tout-terrain :</strong> Totalement compatible avec le lave-vaisselle, le micro-ondes et le four.",
+            "prod.gres.ideal": "<strong>Idéal pour :</strong> Vos tasses du petit-déjeuner quotidien, bols d'usage courant et pièces tout-terrain. Également adapté à l'hôtellerie et à la restauration (HORECA).",
+            "prod.cmp.title": "Comparatif rapide",
+            "prod.cmp.row1_left": "Cuisson modérée ou traditionnelle",
+            "prod.cmp.row1_label": "Le feu",
+            "prod.cmp.row1_right": "Cuisson à température extrême (+1200°C)",
+            "prod.cmp.row2_left": "Pâte poreuse (nécessite une couche d'émail)",
+            "prod.cmp.row2_label": "L'eau",
+            "prod.cmp.row2_right": "Porosité quasi nulle (imperméable naturel)",
+            "prod.cmp.row3_left": "Table, décoration et cuisine traditionnelle (tajine, cocotte)",
+            "prod.cmp.row3_label": "Son terrain",
+            "prod.cmp.row3_right": "Usage intensif quotidien et hôtellerie professionnelle (HORECA)",
+            "qs.eyebrow": "Notre histoire",
+            "qs.h2": "Un commerce familial au cœur du Val d'Aran",
+            "qs.p1": "Bremba-Te'n a ouvert ses portes à Bossòst en 1978 et est depuis un commerce familial dédié à l'artisanat et à la décoration. Génération après génération, nous sélectionnons pièce par pièce une céramique espagnole faite et peinte à la main.",
+            "qs.p2": "En boutique, vous trouverez des arts de la table, de la décoration et des pièces pour l'extérieur : vaisselle aux couleurs vives, vases et jardinières, porte-parapluies, et ustensiles de cuisine traditionnelle comme les tajines et cocottes en terre cuite. Aucune pièce n'est identique à une autre — et c'est ainsi que nous voulons que chacune se sente chez vous.",
+            "qs.p3": "Si vous passez par le Val d'Aran, nous vous attendons à Bossòst pour voir et toucher les pièces en personne.",
+            "rv.eyebrow": "Ce que l'on dit de nous",
+            "rv.h2": "Avis",
+            "rv.lead": "Avis réels de clients qui sont passés par la boutique à Bossòst.",
+            "rv.count_label": "23 avis sur",
+            "rv.q1": "\u00abBremba-te'n est une boutique de céramique de référence. Depuis plus de 40 ans, elle propose un artisanat à l'état pur, en contact direct avec les ateliers les plus emblématiques. Sous le soin de trois générations, avec un goût très raffiné dans la sélection, on y retrouve les meilleures céramiques de toute l'Espagne. Merci !\u00bb",
+            "rv.q2": "\u00abJe passe dans cette boutique de céramique à chaque fois que je suis de passage à Bossòst, et c'est toujours un vrai plaisir. Les pièces proposées sont uniques, magnifiques et d'une grande qualité — on sent qu'elles sont faites pour durer dans le temps. J'apprécie particulièrement le fait que les collections changent régulièrement. Mention spéciale pour le gérant, extrêmement sympathique. Une adresse incontournable.\u00bb",
+            "rv.q3": "\u00abJolie découverte que cette échoppe pleine de couleurs. De beaux objets en céramique et de la décoration originale. Très bel accueil et service. L'emballage est vraiment fait avec précaution pour le transport. Si vous êtes de passage, n'hésitez pas à vous arrêter.\u00bb",
+            "rv.source1": "Google · avis original en espagnol",
+            "rv.source2": "Google · Local Guide · avis original",
+            "rv.source3": "Google · Local Guide · avis original",
+            "rv.cta": "Laissez-nous votre avis",
+            "ct.eyebrow": "Rendez-nous visite",
+            "ct.h2": "Contact",
+            "ct.lead": "Nous sommes à Bossòst, Val d'Aran. Écrivez-nous ou passez à la boutique.",
+            "ct.dir_label": "Adresse",
+            "ct.horario_label": "Horaires",
+            "ct.horario_dias": "Mardi à dimanche",
+            "ct.horario_y": "et",
+            "ct.horario_cerrado": "Lundi : fermé",
+            "ct.como_llegar": "Comment venir →",
+            "ct.escribenos_label": "Écrivez-nous",
+            "ft.tagline": "Artisanat et Décoration"
+        },
+        oc: {
+            "nav.inicio": "Entrada",
+            "nav.productos": "Ceramica e Grès",
+            "nav.quienes": "Qui èm",
+            "nav.resenas": "Comentaris",
+            "nav.contacto": "Contacte →",
+            "hero.badge": "Bossòst · Val d'Aran",
+            "hero.h1_1": "Ceramica hèta a man,",
+            "hero.h1_em": "vienguda de tota Espanha",
+            "hero.sub": "Menatge, decoracion e exterior en ceramica espanhòla hèta e pintada a man. Negòci familiar a Bossòst de 1978 enlà, damb pèces vengudes de diferentas regions d'Espanha.",
+            "hero.btn_primary": "Vei ceramica e grès",
+            "hero.btn_outline": "Coma arribar",
+            "hero.fact1_v": "Bossòst",
+            "hero.fact1_l": "Botiga en Bossòst, Val d'Aran",
+            "hero.fact2_v": "De 1978 enlà",
+            "hero.fact2_l": "Negòci familiar, de generacion en generacion",
+            "hero.fact3_v": "Tota Espanha",
+            "hero.fact3_l": "Origina artesana de cada region",
+            "hero.fact4_v": "100% a man",
+            "hero.fact4_l": "Cap pèça non ei identica a un aute",
+            "ig.eyebrow": "Darrèras publicacions",
+            "ig.h2": "Seguís-mos en Instagram",
+            "ig.lead": "@brembaten — pèces navèras, novetats dera botiga e eth dia a dia deth talhèr.",
+            "ig.note": "Flux connectat en dirècte a @Brembaten via SociableKIT.",
+            "prod.eyebrow": "Eth nòste catalòg",
+            "prod.h2": "Ceramica tradicionau o Grès?",
+            "prod.lead": "Dus materiaus, dus terrenhs de fòrça. Descobrís quin s'ajusta damb çò que cèrques.",
+            "prod.ceramica.title": "Ceramica Tradicionau",
+            "prod.ceramica.intro": "L'expression mès liura dera alfareria espanhòla: color, fòrma e caractèr, pèça per pèça.",
+            "prod.ceramica.process": "Cueita a temperatura moderada e vestida damb esmalts vius, cada pèça neish deth ofici d'alfarèrs de diferentas regions d'Espanha — cap pèça non ei identica a un aute.",
+            "prod.ceramica.b1": "<strong>Color sense limits:</strong> tons vius, intensos e variats que reflectissen era tradicion de cada region.",
+            "prod.ceramica.b2": "<strong>Versatilitat totau:</strong> veishèra de taula, tajines e cassòlas de cosina tradicionau, gèrras e paraigüèrs.",
+            "prod.ceramica.b3": "<strong>Pèça unica, hèta a man:</strong> cap non ges identica a un aute deth torn.",
+            "prod.ceramica.ideal": "<strong>Ideau entà:</strong> Veishèra de cada dia e d'ocasion, gèrras e testets decoratius, paraigüèrs, e pèces de cosina tradicionau coma tajines e cassòlas de tèrra.",
+            "prod.gres.title": "Eth Grès",
+            "prod.gres.intro": "Ceramica evolucionada tà era maxima resistencia. Compacta e fòrta coma era ròca.",
+            "prod.gres.process": "Neish d'ua seleccion d'argilas e minerals cueits a temperaturas extremas (+1200°C). Era calor vitrifica es materiaus, barrant quinsevolh poro.",
+            "prod.gres.b1": "<strong>Impermeabla per natura:</strong> Non absorbís cap liquid, mès enlà des zònas sense esmalt.",
+            "prod.gres.b2": "<strong>Maxima durabilitat:</strong> Fòrça resistenta as còps, es esbocinaments e er usatge de cada dia.",
+            "prod.gres.b3": "<strong>Tot terrenh:</strong> Totaument apte entà lavavaishèra, microòndas e forn.",
+            "prod.gres.ideal": "<strong>Ideau entà:</strong> Es tòns tasses deth dejoar de cada dia, bòls d'usatge constant e pèces tot terrenh. Tanben apte entad hostalaria e restauracion (HORECA).",
+            "prod.cmp.title": "Comparativa rapida",
+            "prod.cmp.row1_left": "Cueita moderada o tradicionau",
+            "prod.cmp.row1_label": "Eth huec",
+            "prod.cmp.row1_right": "Cueita a temperatura extrema (+1200°C)",
+            "prod.cmp.row2_left": "Pasta porosa (cau ua capa d'esmalt)",
+            "prod.cmp.row2_label": "Er aigua",
+            "prod.cmp.row2_right": "Porositat gaireben nulla (impermeabla naturau)",
+            "prod.cmp.row3_left": "Taula, decoracion e cosina tradicionau (tajine, cassòla)",
+            "prod.cmp.row3_label": "Eth sòn terrenh",
+            "prod.cmp.row3_right": "Usatge intensiu de cada dia e hostalaria professionau (HORECA)",
+            "qs.eyebrow": "Era nòsta istòria",
+            "qs.h2": "Un negòci familiar en còr dera Val d'Aran",
+            "qs.p1": "Bremba-Te'n daurí es sues pòrtes a Bossòst en 1978 e dempús ei un negòci familiar dedicat ar artesanat e ara decoracion. De generacion en generacion, seleccionam pèça per pèça ceramica espanhòla hèta e pintada a man.",
+            "qs.p2": "Ena botiga trobaràs menatge de taula, decoracion e pèces entà l'exterior: veishèra de color viu, gèrras e testets, paraigüèrs, e estris de cosina tradicionau coma tajines e cassòlas de tèrra. Cap pèça non ei identica a un aute — e atau volem que se senta cada ua ena tua casa.",
+            "qs.p3": "Se passes pera Val d'Aran, t'esperam a Bossòst entà que veigues e tòques es pèces en persona.",
+            "rv.eyebrow": "Çò que díden de nosati",
+            "rv.h2": "Comentaris",
+            "rv.lead": "Opinions reaus de clients qu'an passat pera botiga a Bossòst.",
+            "rv.count_label": "23 comentaris en",
+            "rv.q1": "«Bremba-te'n ei ua botiga de ceramica de referéncia. Dès hè mès de 40 ans aufrís artesanat en estat pur, en contacte dirècte damb es talhèrs mès emblematics. Sota era cura de tres generacions, damb un gost fòrça fin ena seleccion, s'i trapen es milhors ceramicas de tota Espanha. Mercés!»",
+            "rv.q2": "«Passi per aguesta botiga de ceramica cada còp que sò de passatge a Bossòst, e ei totjorn un vertadèr plaser. Es pèces son unicas, magnificas e d'ua grana qualitat — se sent que son hètas entà durar. M'agrada qu'es colleccions cambien regularament. Mencion especiau entath gerent, fòrça simpatic. Ua adreça indispensabla.»",
+            "rv.q3": "«Beròi descobriment aguesta botiga plia de colors. Beròis objèctes de ceramica e decoracion originau. Fòrça bona acuelhuda e servici. Er embalatge ei hèt damb fòrça cura entath transpòrt. Se ès de passatge, non dobtes pas a t'arrestar.»",
+            "rv.source1": "Google · comentari originau en espanhòl",
+            "rv.source2": "Google · Local Guide · reviratat deth francés",
+            "rv.source3": "Google · Local Guide · reviratat deth francés",
+            "rv.cta": "Deisha-mos eth tòn comentari",
+            "ct.eyebrow": "Vengue-mos véder",
+            "ct.h2": "Contacte",
+            "ct.lead": "Èm a Bossòst, Val d'Aran. Escriu-mos o passa pera botiga.",
+            "ct.dir_label": "Adreça",
+            "ct.horario_label": "Orari",
+            "ct.horario_dias": "De dimars a dimenge",
+            "ct.horario_y": "e",
+            "ct.horario_cerrado": "Dilluns: barrat",
+            "ct.como_llegar": "Coma arribar →",
+            "ct.escribenos_label": "Escriu-mos",
+            "ft.tagline": "Artesania e Decoracion"
+        }
+    };
+
+    (function() {
+        var langBtns = document.querySelectorAll('.lang-btn');
+
+        function applyLanguage(lang) {
+            var dict = translations[lang] || translations.es;
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) el.textContent = dict[key];
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-html');
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
+            });
+            document.documentElement.lang = lang;
+            langBtns.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+            try { localStorage.setItem('bt_lang', lang); } catch (e) {}
+        }
+
+        langBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                applyLanguage(this.getAttribute('data-lang'));
+            });
+        });
+
+        var saved = 'es';
+        try { saved = localStorage.getItem('bt_lang') || 'es'; } catch (e) {}
+        applyLanguage(saved);
+    })();
+</script>
+
+<script>
+    (function() {
+        var nav = document.getElementById('siteNav');
+        var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+        var sectionIds = ['inicio','instagram','productos','quienes-somos','resenas','contacto'];
+
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var id = this.getAttribute('href').slice(1);
+                var target = document.getElementById(id);
+                if (!target) return;
+                var navH = nav.offsetHeight;
+                var y = target.getBoundingClientRect().top + window.pageYOffset - navH;
+                window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            });
+        });
+
+        function getActive() {
+            var navH = nav.offsetHeight + 8;
+            var scrollY = window.pageYOffset;
+            var active = sectionIds[0];
+            sectionIds.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top + window.pageYOffset - navH <= scrollY + 4) {
+                    active = id;
+                }
+            });
+            return active;
+        }
+
+        function updateNav() {
+            var active = getActive();
+            navLinks.forEach(function(link) {
+                var id = link.getAttribute('href').slice(1);
+                link.classList.toggle('active', id === active && !link.classList.contains('nav-cta'));
+            });
+        }
+
+        window.addEventListener('scroll', updateNav, { passive: true });
+        updateNav();
+    })();
+</script>
+
+</body>
+</html>
