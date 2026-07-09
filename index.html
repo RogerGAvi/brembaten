@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bremba-te'n · Artesania e Decoracion · Bossòst, Val d'Aran</title>
+<title>Bremba-te'n · Artesania e Decoracion · Bossòst, Valle de Arán</title>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -403,6 +403,95 @@
         height: 240px;
         object-fit: cover;
         border-radius: 10px;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+    }
+
+    .ig-gallery img:hover {
+        opacity: 0.85;
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────── */
+    .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(18,12,8,0.94);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .lightbox-overlay.open {
+        display: flex;
+    }
+
+    .lightbox-img {
+        max-width: min(90vw, 1000px);
+        max-height: 82vh;
+        object-fit: contain;
+        border-radius: 6px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+        position: absolute;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.25);
+        color: var(--white);
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+        transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+        background: rgba(255,255,255,0.22);
+    }
+
+    .lightbox-close {
+        top: 22px;
+        right: 22px;
+    }
+
+    .lightbox-prev {
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .lightbox-next {
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .lightbox-counter {
+        position: absolute;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.7);
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 640px) {
+        .lightbox-overlay { padding: 16px; }
+        .lightbox-prev, .lightbox-next, .lightbox-close { width: 40px; height: 40px; }
+        .lightbox-prev { left: 6px; }
+        .lightbox-next { right: 6px; }
+        .lightbox-close { top: 10px; right: 10px; }
     }
 
     .btn-outline-dark {
@@ -837,9 +926,9 @@
 
     <!-- ── HERO ────────────────────────────────────────── -->
     <header class="hero" id="inicio">
-        <img src="assets/cruz_aranesa.jpg" alt="Cruz occitana del Val d'Aran" class="hero-cross">
+        <img src="assets/cruz_aranesa.jpg" alt="Cruz occitana del Valle de Arán" class="hero-cross">
         <div class="hero-inner">
-            <span class="hero-badge" data-i18n="hero.badge">Bossòst · Val d'Aran</span>
+            <span class="hero-badge" data-i18n="hero.badge">Bossòst · Valle de Arán</span>
             <h1><span data-i18n="hero.h1_1">Cerámica hecha a mano,</span> <em data-i18n="hero.h1_em">traída de toda España</em></h1>
             <p class="hero-sub" data-i18n="hero.sub">Menaje, decoración y exterior en cerámica española hecha y pintada a mano. Negocio familiar en Bossòst desde 1978, con piezas traídas de distintas regiones de España.</p>
             <div class="hero-actions">
@@ -849,7 +938,7 @@
             <div class="hero-facts">
                 <div class="hero-fact">
                     <span class="hero-fact-value" data-i18n="hero.fact1_v">Bossòst</span>
-                    <span class="hero-fact-label" data-i18n="hero.fact1_l">Tienda física en el Val d'Aran</span>
+                    <span class="hero-fact-label" data-i18n="hero.fact1_l">Tienda física en el Valle de Arán</span>
                 </div>
                 <div class="hero-fact">
                     <span class="hero-fact-value" data-i18n="hero.fact2_v">Desde 1978</span>
@@ -965,13 +1054,13 @@
     <section class="quienes-section" id="quienes-somos">
         <div class="section-inner">
             <div class="section-eyebrow" data-i18n="qs.eyebrow">Nuestra historia</div>
-            <h2 data-i18n="qs.h2">Un negocio familiar en el corazón del Val d'Aran</h2>
+            <h2 data-i18n="qs.h2">Un negocio familiar en el corazón del Valle de Arán</h2>
             <div class="quienes-grid">
                 <img src="assets/tienda_entrada.jpg" alt="Entrada de la tienda Bremba-te'n en Bossòst">
                 <div class="quienes-text">
                     <p data-i18n="qs.p1">Bremba-te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.</p>
                     <p data-i18n="qs.p2">En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra, y así queremos que se sienta cada una en tu casa.</p>
-                    <p data-i18n="qs.p3">Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.</p>
+                    <p data-i18n="qs.p3">Si pasas por el Valle de Arán, te esperamos en Bossòst para que veas y toques las piezas en persona.</p>
                 </div>
             </div>
         </div>
@@ -1022,7 +1111,7 @@
         <div class="section-inner">
             <div class="section-eyebrow" data-i18n="ct.eyebrow">Visítanos</div>
             <h2 data-i18n="ct.h2">Contacto</h2>
-            <p class="section-lead" data-i18n="ct.lead">Estamos en Bossòst, Val d'Aran. Escríbenos o pasa por la tienda.</p>
+            <p class="section-lead" data-i18n="ct.lead">Estamos en Bossòst, Valle de Arán. Escríbenos o pasa por la tienda.</p>
 
             <div class="contacto-grid">
                 <div class="contacto-card">
@@ -1055,12 +1144,21 @@
     </section>
 
     <!-- ── FOOTER ──────────────────────────────────────── -->
+    <!-- ── LIGHTBOX ─────────────────────────────────────── -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+        <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        <button type="button" class="lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
     <footer>
         <div class="footer-brand">
             <img src="assets/logo_bremba.jpg" alt="Bremba-te'n">
             <span class="footer-name">BREMBA-TE'N</span>
         </div>
-        <p><span data-i18n="ft.tagline">Artesania e Decoracion</span> · Bossòst · Val d'Aran</p>
+        <p><span data-i18n="ft.tagline">Artesania e Decoracion</span> · Bossòst · Valle de Arán</p>
     </footer>
 
 <script>
@@ -1090,13 +1188,61 @@
         var gallery = document.getElementById('igGallery');
         if (!gallery) return;
 
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightboxImg');
+        var lightboxCounter = document.getElementById('lightboxCounter');
+        var currentUrls = [];
+        var currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentUrls[currentIndex];
+            lightboxCounter.textContent = (currentIndex + 1) + ' / ' + currentUrls.length;
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % currentUrls.length;
+            updateLightbox();
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + currentUrls.length) % currentUrls.length;
+            updateLightbox();
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxNext').addEventListener('click', showNext);
+        document.getElementById('lightboxPrev').addEventListener('click', showPrev);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+
         function renderImages(urls) {
+            currentUrls = urls;
             gallery.innerHTML = '';
-            urls.forEach(function(url) {
+            urls.forEach(function(url, index) {
                 var img = document.createElement('img');
                 img.src = url;
-                img.alt = 'Bremba-Te\'n';
+                img.alt = 'Bremba-te\'n';
                 img.loading = 'lazy';
+                img.addEventListener('click', function() { openLightbox(index); });
                 gallery.appendChild(img);
             });
         }
@@ -1140,14 +1286,14 @@
             "nav.quienes": "Quiénes somos",
             "nav.resenas": "Reseñas",
             "nav.contacto": "Contacto →",
-            "hero.badge": "Bossòst · Val d'Aran",
+            "hero.badge": "Bossòst · Valle de Arán",
             "hero.h1_1": "Cerámica hecha a mano,",
             "hero.h1_em": "traída de toda España",
             "hero.sub": "Menaje, decoración y exterior en cerámica española hecha y pintada a mano. Negocio familiar en Bossòst desde 1978, con piezas traídas de distintas regiones de España.",
             "hero.btn_primary": "Ver cerámica y gres",
             "hero.btn_outline": "Cómo llegar",
             "hero.fact1_v": "Bossòst",
-            "hero.fact1_l": "Tienda física en el Val d'Aran",
+            "hero.fact1_l": "Tienda física en el Valle de Arán",
             "hero.fact2_v": "Desde 1978",
             "hero.fact2_l": "Negocio familiar, generación tras generación",
             "hero.fact3_v": "Toda España",
@@ -1191,10 +1337,10 @@
             "prod.cmp.row3_label": "Su terreno",
             "prod.cmp.row3_right": "Uso intensivo diario y hostelería profesional (HORECA)",
             "qs.eyebrow": "Nuestra historia",
-            "qs.h2": "Un negocio familiar en el corazón del Val d'Aran",
+            "qs.h2": "Un negocio familiar en el corazón del Valle de Arán",
             "qs.p1": "Bremba-te'n abrió sus puertas en Bossòst en 1978 y desde entonces es un negocio familiar dedicado a la artesanía y la decoración. Generación tras generación, seleccionamos pieza a pieza cerámica española hecha y pintada a mano.",
             "qs.p2": "En tienda encontrarás menaje de mesa, decoración y piezas para el exterior: vajillas de color vivo, jarrones y floreros, paragüeros, y utensilios de cocina tradicional como tajines y cazuelas de barro. Ninguna pieza es idéntica a otra, y así queremos que se sienta cada una en tu casa.",
-            "qs.p3": "Si pasas por el Val d'Aran, te esperamos en Bossòst para que veas y toques las piezas en persona.",
+            "qs.p3": "Si pasas por el Valle de Arán, te esperamos en Bossòst para que veas y toques las piezas en persona.",
             "rv.eyebrow": "Lo que dicen de nosotros",
             "rv.h2": "Reseñas",
             "rv.lead": "Opiniones reales de clientes que han pasado por la tienda en Bossòst.",
@@ -1208,7 +1354,7 @@
             "rv.cta": "Déjanos tu reseña",
             "ct.eyebrow": "Visítanos",
             "ct.h2": "Contacto",
-            "ct.lead": "Estamos en Bossòst, Val d'Aran. Escríbenos o pasa por la tienda.",
+            "ct.lead": "Estamos en Bossòst, Valle de Arán. Escríbenos o pasa por la tienda.",
             "ct.dir_label": "Dirección",
             "ct.horario_label": "Horario",
             "ct.horario_dias": "Martes a domingo",
