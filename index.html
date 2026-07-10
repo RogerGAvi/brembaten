@@ -950,8 +950,30 @@
         .hero h1 { font-size: 36px; }
         .prod-columns, .quienes-grid { grid-template-columns: 1fr; }
         .quienes-grid img { height: 280px; }
-        .cmp-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-        .cmp-content.left { text-align: left; }
+        .cmp-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 20px 0;
+        }
+        .cmp-label {
+            flex: 0 0 auto;
+            order: -1;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .cmp-content {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+        .cmp-content.left {
+            text-align: left;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed rgba(36,28,21,0.15);
+            margin-bottom: 6px;
+        }
         section { padding: 56px 20px; }
     }
 </style>
