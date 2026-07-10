@@ -477,6 +477,62 @@
         opacity: 0.85;
     }
 
+    .ig-thumb {
+        position: relative;
+    }
+
+    .ig-thumb-more {
+        position: absolute;
+        inset: 0;
+        background: rgba(18,12,8,0.55);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-family: 'Fraunces', serif;
+        font-size: 22px;
+        font-weight: 600;
+        pointer-events: none;
+    }
+
+    .ig-swipe-hint {
+        display: none;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        margin: -18px 0 20px;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .ig-gallery {
+            display: flex;
+            grid-template-columns: none;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 0 24px;
+            gap: 12px;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .ig-gallery::-webkit-scrollbar { display: none; }
+
+        .ig-thumb {
+            flex: 0 0 88%;
+            scroll-snap-align: center;
+        }
+
+        .ig-gallery img {
+            height: 280px;
+        }
+
+        .ig-swipe-hint {
+            display: block;
+        }
+    }
+
     /* ── BOTÓN DE MÚSICA ─────────────────────────────── */
     .music-toggle {
         position: fixed;
@@ -728,6 +784,10 @@
         margin-bottom: 24px;
     }
 
+    .cmp-switch {
+        display: none;
+    }
+
     .cmp-row {
         display: flex;
         align-items: center;
@@ -950,6 +1010,87 @@
         .hero h1 { font-size: 36px; }
         .prod-columns, .quienes-grid { grid-template-columns: 1fr; }
         .quienes-grid img { height: 280px; }
+
+        .cmp-switch {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .cmp-switch-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 10px;
+            border-radius: 9px;
+            border: 1.5px solid rgba(36,28,21,0.15);
+            background: var(--white);
+            color: var(--ink-soft);
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cmp-switch-btn .icon {
+            width: 17px;
+            height: 17px;
+            margin: 0;
+            stroke: currentColor;
+        }
+
+        .cmp-switch-btn.active {
+            border-color: transparent;
+            color: var(--white);
+        }
+
+        .comparison-table.view-ceramica .cmp-switch-btn[data-view="ceramica"].active {
+            background: var(--dorado);
+        }
+
+        .comparison-table.view-gres .cmp-switch-btn[data-view="gres"].active {
+            background: var(--granate);
+        }
+
+        /* Solo se muestra la columna del material activo */
+        .cmp-content { display: none; }
+        .comparison-table.view-ceramica .cmp-content.left { display: block; }
+        .comparison-table.view-gres .cmp-content:not(.left) { display: block; }
+
+        .cmp-content.left {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* El fondo y el color de las etiquetas cambian según el material activo */
+        .comparison-table {
+            transition: background-color 0.25s ease;
+        }
+
+        .comparison-table.view-ceramica {
+            background: #FBF0DC;
+        }
+
+        .comparison-table.view-gres {
+            background: #F5E2DF;
+        }
+
+        .comparison-table.view-ceramica .cmp-label,
+        .comparison-table.view-ceramica .cmp-label .icon {
+            color: var(--dorado);
+            stroke: var(--dorado);
+        }
+
+        .comparison-table.view-gres .cmp-label,
+        .comparison-table.view-gres .cmp-label .icon {
+            color: var(--granate);
+            stroke: var(--granate);
+        }
+
         .cmp-row {
             flex-direction: column;
             align-items: flex-start;
@@ -970,9 +1111,6 @@
         }
         .cmp-content.left {
             text-align: left;
-            padding-bottom: 6px;
-            border-bottom: 1px dashed rgba(36,28,21,0.15);
-            margin-bottom: 6px;
         }
         section { padding: 56px 20px; }
     }
@@ -1159,8 +1297,18 @@
                 </div>
             </div>
 
-            <div class="comparison-table">
+            <div class="comparison-table view-ceramica" id="comparisonTable">
                 <h3 data-i18n="prod.cmp.title">Comparativa rápida</h3>
+                <div class="cmp-switch" id="cmpSwitch">
+                    <button type="button" class="cmp-switch-btn active" data-view="ceramica">
+                        <svg class="icon"><use href="#icon-wheel"/></svg>
+                        <span data-i18n="prod.ceramica.title">Cerámica Tradicional</span>
+                    </button>
+                    <button type="button" class="cmp-switch-btn" data-view="gres">
+                        <svg class="icon"><use href="#icon-shield"/></svg>
+                        <span data-i18n="prod.gres.title">El Gres</span>
+                    </button>
+                </div>
                 <div class="cmp-row">
                     <div class="cmp-content left" data-i18n="prod.cmp.row1_left">Cocción moderada o tradicional</div>
                     <div class="cmp-label"><svg class="icon"><use href="#icon-flame"/></svg><span data-i18n="prod.cmp.row1_label">El fuego</span></div>
@@ -1188,6 +1336,7 @@
             <p class="section-lead" data-i18n="ig.lead">@Brembaten, una selección de piezas de nuestras colecciones.</p>
 
             <div class="ig-gallery" id="igGallery"></div>
+            <p class="ig-swipe-hint" data-i18n="ig.swipe_hint">← Desliza para ver más →</p>
             <a href="https://www.instagram.com/Brembaten" target="_blank" rel="noopener" class="btn btn-outline-dark" data-i18n="ig.cta">Ver más en Instagram</a>
             <p class="ig-note" data-i18n="ig.note">Galería actualizada por temporada con nuestras últimas colecciones.</p>
         </div>
@@ -1393,17 +1542,39 @@
             if (e.key === 'ArrowLeft') showPrev();
         });
 
+        var MAX_THUMBS = 8;
+
         function renderImages(urls) {
             currentUrls = urls;
             gallery.innerHTML = '';
-            urls.forEach(function(url, index) {
+            var visibleCount = Math.min(urls.length, MAX_THUMBS);
+            var remaining = urls.length - MAX_THUMBS;
+
+            for (var index = 0; index < visibleCount; index++) {
+                var thumb = document.createElement('div');
+                thumb.className = 'ig-thumb';
+
                 var img = document.createElement('img');
-                img.src = url;
+                img.src = urls[index];
                 img.alt = 'Bremba-te\'n';
                 img.loading = 'lazy';
-                img.addEventListener('click', function() { openLightbox(index); });
-                gallery.appendChild(img);
-            });
+                thumb.appendChild(img);
+
+                // En la última miniatura visible, si hay más fotos, se indica el total
+                if (index === visibleCount - 1 && remaining > 0) {
+                    var more = document.createElement('div');
+                    more.className = 'ig-thumb-more';
+                    more.textContent = '+' + remaining;
+                    thumb.appendChild(more);
+                }
+
+                thumb.addEventListener('click', function() {
+                    // el índice real se resuelve buscando la posición del src en el array completo
+                    var src = this.querySelector('img').getAttribute('src');
+                    openLightbox(currentUrls.indexOf(src));
+                });
+                gallery.appendChild(thumb);
+            }
         }
 
         function renderFallback() {
@@ -1468,6 +1639,7 @@
             "ig.lead": "@Brembaten, una selección de piezas de nuestras colecciones.",
             "ig.cta": "Ver más en Instagram",
             "ig.note": "Galería actualizada por temporada con nuestras últimas colecciones.",
+            "ig.swipe_hint": "← Desliza para ver más →",
             "prod.eyebrow": "Nuestro catálogo",
             "prod.h2": "¿Cerámica tradicional o Gres?",
             "prod.lead": "Dos materiales, dos terrenos de fuerza. Descubre cuál encaja con lo que buscas.",
@@ -1554,6 +1726,7 @@
             "ig.lead": "@Brembaten, une sélection de pièces de nos collections.",
             "ig.cta": "Voir plus sur Instagram",
             "ig.note": "Galerie mise à jour par saison avec nos dernières collections.",
+            "ig.swipe_hint": "← Faites glisser pour voir plus →",
             "prod.eyebrow": "Notre catalogue",
             "prod.h2": "Céramique traditionnelle ou Grès ?",
             "prod.lead": "Deux matériaux, deux terrains de force. Découvrez celui qui correspond à ce que vous cherchez.",
@@ -1640,6 +1813,7 @@
             "ig.lead": "@Brembaten, ua seleccion de pèces des nòstes colleccions.",
             "ig.cta": "Vei mès en Instagram",
             "ig.note": "Galeria actualizada per temporada damb es nòstes darrères colleccions.",
+            "ig.swipe_hint": "← Hesca lisar entà véir mès →",
             "prod.eyebrow": "Eth nòste catalòg",
             "prod.h2": "Ceramica tradicionau o Grès?",
             "prod.lead": "Dus materiaus, dus terrenhs de fòrça. Descobrís quin s'ajusta damb çò que cèrques.",
@@ -1816,6 +1990,23 @@
             toggle.classList.toggle('playing', playing);
             toggle.setAttribute('aria-pressed', String(playing));
             toggle.setAttribute('aria-label', playing ? 'Pausar música' : 'Reproducir música');
+        });
+    })();
+</script>
+
+<script>
+    (function() {
+        var table = document.getElementById('comparisonTable');
+        var buttons = document.querySelectorAll('.cmp-switch-btn');
+        if (!table || !buttons.length) return;
+
+        buttons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var view = this.getAttribute('data-view');
+                table.classList.remove('view-ceramica', 'view-gres');
+                table.classList.add('view-' + view);
+                buttons.forEach(function(b) { b.classList.toggle('active', b === btn); });
+            });
         });
     })();
 </script>
